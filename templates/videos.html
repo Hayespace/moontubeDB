@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moontube</title>
+</head>
+<body>
+    {% for video in videos %}
+        {{ video.video_title }}<br>
+        {{ video.category_name }}<br>
+        {{ video.video_description }}<br> 
+        {{ video.category_name }}<br>
+        {{ video.hire_me }}<br>
+        {{ video.video_link }}<br>
+    {% endfor %}
+</body>
+</html>
