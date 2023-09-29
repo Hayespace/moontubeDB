@@ -1,10 +1,16 @@
-{% extends "base.html" %} {% block content %} {% for video in videos %}
+{% extends "base.html" %} 
+{% block content %} 
 
+
+
+<h3 class="center-align">New Videos</h3>
 
   <div class="row">
+    {% for video in videos %}
   <div class="col s6 m6">
     <div class="card">
       <div class="card-image">
+        <p>{{ video.category_name }}</p>
         <iframe
           src="{{ video.video_link }}"
           width="560"
@@ -24,17 +30,15 @@
       <div class="card-content">
         <span class="card-title">{{ video.video_title }}</span>
         <p>{{ video.video_description }}</p>
+        <p><em>by: {{ video.created_by}}</em></p>
       </div>
     </div>
   </div>
+  {% endfor %}
 </div>
 
 
+ {% endblock %}
 
-
- 
-
-{% endfor %} {% endblock %}
-<!--{{ video.category_name }}<br>-->
 
 
