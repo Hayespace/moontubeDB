@@ -42,7 +42,7 @@
                 >Profile</a
               >
             </li>
-            <li><a href="#">Upload Video</a></li>
+            <li><a href="{{ url_for('add_video') }}">Add Video</a></li>
             <li><a href="#">Manage Videos</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
@@ -63,7 +63,7 @@
             >Profile</a
           >
         </li>
-        <li><a href="#">Upload Video</a></li>
+        <li><a href="{{ url_for('add_video') }}">Add Video</a></li>
         <li><a href="#">Manage Videos</a></li>
         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         {% else %}
