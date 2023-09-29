@@ -103,7 +103,8 @@ def logout():
 
 @app.route("/add_video")
 def add_video():
-    return render_template("add_video.html")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_video.html", categories=categories)
 
 
 if __name__ == "__main__":

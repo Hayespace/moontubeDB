@@ -5,6 +5,20 @@
 
     <div class="row card-panel grey lighten-5">
         <form class="col s12" method="POST" action="">
+
+            <div class="row">
+				<div class="input-field col s12">
+                    <i class="fas fa-folder-open prefix"></i>
+					<select id="category_name" name="category_name" class="validate" required>
+                        <option value="" disabled selected>Choose Category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
+                    </select>
+					<label for="category_name">Video Category</label>
+				</div>
+			</div>
+
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-video prefix"></i>
@@ -43,7 +57,7 @@
 					<div class="switch">
                         
 						<label for="hire_me">
-                            <input type="checkbox" id="is_urgent" name="hire_me">
+                            <input type="checkbox" id="hire_me" name="hire_me">
                             <span class="lever"></span>
                            For Hire 
                         </label>
