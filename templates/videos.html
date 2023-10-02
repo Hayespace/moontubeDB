@@ -19,11 +19,18 @@
           frameborder="20"
           allowfullscreen
         ></iframe>
-        
+
+        <div class="s3">
+          <i class="fas fa-caret-down"></i>
+          <a href="" class="btn-small green accent-4">Done</a>
+          <a href="" class="btn-small light-blue lighten-1">Edit</a>
+       </div>
+
         {% if video.hire_me == "hire" %}
         <a class="btn-floating halfway-fab waves-effect waves-light red">
           <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
         </a>
+      
         {% endif %}
 
       </div>
