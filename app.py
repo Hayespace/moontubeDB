@@ -123,6 +123,21 @@ def add_video():
 
 @app.route("/edit_video/<video_id>", methods=["GET", "POST"])
 def edit_video(video_id):
+    if request.method == "POST":
+        hire_me = "hire" if request.form.get("hire_me") else "off"
+        submit = {
+            "category_name": request.form.get("category_name"),
+            "video_title": request.form.get("video_title"),
+            "video_description": request.form.get("video_description"),
+            "hire_me": hire_me,
+            "video_link": request.form.get("video_link"),
+            "created_by": session["user"]
+        }
+       
+        mongo.db.videos.update_one({"_id": ObjectId(video_id)}, {"$set": submit})
+        flash("Video Successfully Updated")
+        
+
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_video.html", video=video, categories=categories)
