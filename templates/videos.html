@@ -5,8 +5,7 @@
 
 <div class="row">
   {% for video in videos %}
-  <!-- User creates videos shown only vvvvvv -->
-  {% if session.user|lower == 'admin' or session.user|lower == video.created_by|lower %}
+  
   <div class="col s6 m6">
     <div class="card">
       <div class="card-image">
@@ -41,7 +40,7 @@
       </div>
     </div>
   </div>
-  {% endif %}
+ 
   {% endfor %}
 </div>
 
