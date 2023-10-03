@@ -117,8 +117,7 @@ def add_video():
         }
         mongo.db.videos.insert_one(video)
         flash("Video Successfully Added")
-        return redirect(url_for("get_videos"))
-
+        
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_video.html", categories=categories)
 

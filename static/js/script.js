@@ -64,3 +64,31 @@ $(document).ready(function(){
         return match ? match[1] : null;
     }
 });
+
+// Function to update video preview based on user input
+function updateVideoPreview() {
+    const videoLinkInput = document.getElementById('video_link_input');
+    const videoPreview = document.getElementById('video-preview');
+    const videoId = getYouTubeVideoId(videoLinkInput.value);
+
+    if (videoId) {
+        // Construct the embedded YouTube iframe
+        const iframeHtml = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+        videoPreview.innerHTML = iframeHtml;
+    } else {
+        // Clear the preview if no valid video ID is found
+        videoPreview.innerHTML = '';
+    }
+}
+// Function to extract YouTube video ID from URL
+function getYouTubeVideoId(url) {
+    const match = url.match(/[?&]v=([^&]+)/);
+    return match && match[1];
+}
+
+// Attach an input event listener to the video link input
+const videoLinkInput = document.getElementById('video_link_input');
+videoLinkInput.addEventListener('input', updateVideoPreview);
+
+// Initial update of video preview
+updateVideoPreview();
