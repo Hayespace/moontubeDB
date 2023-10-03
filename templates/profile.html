@@ -1,15 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel">
-                <h3 class="center-align light-blue-text text-darken-4">
-                    {{ username }}'s Profile
-                </h3>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel">
+            <h3 class="center-align light-blue-text text-darken-4">
+                {{ username }}'s Profile
+            </h3>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for video in user_uploaded_videos %}
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content center-align">
+                <p>{{ video.category_name }}</p>
+                <div class="video-container">
+                    <iframe
+                        src="{{ video.video_link }}?rel=0&modestbranding=1&controls=0"
+                        title="video player"
+                        frameborder="20"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                
+                {% if video.hire_me == "hire" %}
+                <a class="btn-floating halfway-fab waves-effect waves-light red">
+                    <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
+                </a>
+                {% endif %}
+                
+                <span class="card-title">{{ video.video_title }}</span>
+                <p>{{ video.video_description }}</p>
+                <p><em>by: {{ video.created_by }}</em></p>
+                
+                <!-- Edit and delete buttons -->
+                <div class="s3">
+                    <a href="{{ url_for('delete_video', video_id=video._id) }}" class="btn-small red accent-4 delete-video-btn">Delete</a>
+                    <a href="{{ url_for('edit_video', video_id=video._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+                </div>
             </div>
         </div>
     </div>
-
+    {% endfor %}
+</div>
 
 {% endblock %}

@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.tooltipped').tooltip();
     $('select').formSelect();
+    $(".dropdown-trigger").dropdown();
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {
@@ -32,4 +33,34 @@ $(document).ready(function(){
     }
 
   });
+  // Convert Video URL
+  $(document).ready(function() {
+    
+    $('#video_link_input').on('input', function() {
+        var inputUrl = $(this).val();
+        if (isValidYouTubeUrl(inputUrl)) {
+            var embedUrl = convertToEmbedUrl(inputUrl);
+            $(this).val(embedUrl);
+        }
+    });
 
+    // Function to check if a URL is a valid YouTube URL
+    function isValidYouTubeUrl(url) {
+        return url.includes('youtube.com');
+    }
+
+    // Function to convert a YouTube URL to the embed format
+    function convertToEmbedUrl(url) {
+        var videoId = getVideoIdFromUrl(url);
+        if (videoId) {
+            return 'https://www.youtube.com/embed/' + videoId;
+        }
+        return url;
+    }
+
+    // Function to extract the video ID from a YouTube URL
+    function getVideoIdFromUrl(url) {
+        var match = url.match(/[?&]v=([^&]+)/);
+        return match ? match[1] : null;
+    }
+});
