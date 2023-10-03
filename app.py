@@ -121,6 +121,13 @@ def add_video():
     return render_template("add_video.html", categories=categories)
 
 
+@app.route("/edit_video/<video_id>", methods=["GET", "POST"])
+def edit_video(video_id):
+    video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_video.html", video=video, categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

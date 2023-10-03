@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Edit Video</h3>
+
+    <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="{{ url_for('edit_video', video_id=video._id) }}">
+    <!--Choose Category-->
+            <div class="row">
+				<div class="input-field col s12">
+                    <i class="fas fa-folder-open prefix"></i>
+					<select id="category_name" name="category_name" class="validate" required>
+                        <option value="" disabled selected>Choose Category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
+                    </select>
+					<label for="category_name">Video Category</label>
+				</div>
+			</div>
+    <!--Video Title-->        
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-video prefix"></i>
+                    <input id="video_title" name="video_title" minlength="1" maxlength="30"
+                        type="text" class="validate" required>
+                    <label for="video_title">Video Title</label>
+                </div>
+            </div>
+    <!--Video Description--> 
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-align-left prefix"></i>
+                    <textarea id="video_description" name="video_description" minlength="5"
+                        maxlength="50" class="materialize-textarea validate" required></textarea>
+                    <label for="video_description">Video Description</label>
+                </div>
+            </div>
+    <!--Video Link--> 
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-link prefix"></i>
+                    <textarea id="video_link" name="video_link" minlength="5"
+                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                    <label for="video_link">Video Link</label>
+                </div>
+            </div>
+    <!--Hire Me-->         
+			<div class="row">
+				<div class="input-field col s12">
+					<div class="switch">
+						<label for="hire_me">
+                            <input type="checkbox" id="hire_me" name="hire_me">
+                            <span class="lever"></span>
+                           For Hire 
+                        </label>
+					</div>
+				</div>
+			</div>
+    <!--Submit Button-->         
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large red lighten-2">
+                        Edit Video <i class="fas fa-rocket right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
