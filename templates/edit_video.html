@@ -10,9 +10,13 @@
 				<div class="input-field col s12">
                     <i class="fas fa-folder-open prefix"></i>
 					<select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose Category</option>
+                        <option value="" disabled>Choose Category</option>
                         {% for category in categories %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                            {% if category.category_name == video.category_name %}
+                            {% else %}
+                            <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                            {% endif %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option> 
                         {% endfor %}
                     </select>
 					<label for="category_name">Video Category</label>
@@ -23,7 +27,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-video prefix"></i>
                     <input id="video_title" name="video_title" minlength="1" maxlength="30"
-                        type="text" class="validate" required>
+                      value="{{ video.video_title }}"  type="text" class="validate" required>
                     <label for="video_title">Video Title</label>
                 </div>
             </div>
@@ -32,7 +36,8 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix"></i>
                     <textarea id="video_description" name="video_description" minlength="5"
-                        maxlength="50" class="materialize-textarea validate" required></textarea>
+                        maxlength="50" class="materialize-textarea validate" required>
+                    {{- video.video_description -}}</textarea>
                     <label for="video_description">Video Description</label>
                 </div>
             </div>
@@ -41,7 +46,8 @@
                 <div class="input-field col s12">
                     <i class="fas fa-link prefix"></i>
                     <textarea id="video_link" name="video_link" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                        maxlength="200" class="materialize-textarea validate" required>
+                        {{- video.video_link -}}</textarea>
                     <label for="video_link">Video Link</label>
                 </div>
             </div>
@@ -50,7 +56,11 @@
 				<div class="input-field col s12">
 					<div class="switch">
 						<label for="hire_me">
+                            {% if video.hire_me == "hire" %}
+                            <input type="checkbox" id="hire_me" name="hire_me" checked>
+                            {% else %}
                             <input type="checkbox" id="hire_me" name="hire_me">
+                            {% endif %}
                             <span class="lever"></span>
                            For Hire 
                         </label>
@@ -60,7 +70,10 @@
     <!--Submit Button-->         
             <div class="row">
                 <div class="col s12 center-align">
-                    <button type="submit" class="btn-large red lighten-2">
+                    <a href="{{ url_for('get_videos')}}" class="btn-large red">
+                        Cancel <i class="fas fa-xmark right"></i>
+                    </a>
+                    <button type="submit" class="btn-large green lighten-2">
                         Edit Video <i class="fas fa-rocket right"></i>
                     </button>
                 </div>
