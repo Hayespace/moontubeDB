@@ -1,6 +1,17 @@
 body {
-    background: linear-gradient(to bottom, #16036b, #857eda);
-}
+    background-image: linear-gradient(to bottom right, #000000, rgb(104, 34, 109));
+    color: snow;
+  }
+
+  #fixed-nav-panel {
+    position: fixed;    
+    top: 80px;            
+    bottom: 0;          
+    left: 0;            
+    width: 260px;      
+    overflow-y: auto;  
+    z-index: 1;         
+  }
 
 .flashes h4 {
     line-height: 2;
@@ -9,14 +20,6 @@ body {
 .btn-small {
     margin: 5px;
 }
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio (height:width) for responsive scaling */
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-  }
   
   .video-container iframe {
     position: absolute;
@@ -26,3 +29,13 @@ body {
     height: 100%;
   }
   
+.card-style {
+    display: block;
+    color: whitesmoke;
+    box-shadow: 15px 10px 5px rgba(6, 3, 23, 0.65);
+    border-radius: 10px;
+    font-size: large;
+    text-align: left;
+    background-color: rgba(176, 39, 114, 0.44);
+    padding: 0px;
+}
