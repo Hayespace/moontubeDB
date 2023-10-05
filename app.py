@@ -17,6 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 # Main route to display videos
 @app.route("/")
 def get_videos():
@@ -29,6 +30,7 @@ def get_videos():
         categorized_videos[category_name] = videos
 
     return render_template("videos.html", categorized_videos=categorized_videos, show_buttons=False)
+
 
 # Search route
 @app.route("/search", methods=["GET", "POST"])
@@ -90,15 +92,23 @@ def login():
 
     return render_template("login.html")
 
+
 # User profile with uploaded videos
 @app.route("/profile")
 def profile():
     if "user" in session:
         username = session["user"]
         user_uploaded_videos = list(mongo.db.videos.find({"created_by": username}))
-        return render_template("profile.html", username=username, user_uploaded_videos=user_uploaded_videos)
+        
+        if username == "admin":
+            # If the user is admin, get all videos
+            all_videos = list(mongo.db.videos.find())
+            return render_template("profile.html", username=username, user_uploaded_videos=user_uploaded_videos, all_videos=all_videos, show_buttons=True)
+        else:
+            return render_template("profile.html", username=username, user_uploaded_videos=user_uploaded_videos, show_buttons=True)
     else:
         return redirect(url_for("login"))
+
 
 # User logout
 @app.route("/logout")
@@ -107,6 +117,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
 
 # Add a new video
 @app.route("/add_video", methods=["GET", "POST"])
@@ -127,6 +138,7 @@ def add_video():
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_video.html", categories=categories)
 
+
 # Edit a video
 @app.route("/edit_video/<video_id>", methods=["GET", "POST"])
 def edit_video(video_id):
@@ -142,10 +154,12 @@ def edit_video(video_id):
         }
         mongo.db.videos.update_one({"_id": ObjectId(video_id)}, {"$set": submit})
         flash("Video Successfully Updated")
+        return redirect(url_for("profile"))
 
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_video.html", video=video, categories=categories)
+
 
 # Delete a video
 @app.route("/delete_video/<video_id>")
@@ -154,11 +168,13 @@ def delete_video(video_id):
     flash("Video Successfully Deleted")
     return redirect(url_for("profile"))
 
+
 # Get all categories
 @app.route("/get_categories")
 def get_categories():
     categories = list(mongo.db.categories.find().sort("category_name", 1))
     return render_template("categories.html", categories=categories)
+
 
 # Add a new category
 @app.route("/add_category", methods=["GET", "POST"])
@@ -172,6 +188,7 @@ def add_category():
         return redirect(url_for("get_categories"))
 
     return render_template("add_category.html")
+
 
 # Edit a category
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
@@ -187,12 +204,28 @@ def edit_category(category_id):
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
     return render_template("edit_category.html", category=category)
 
+
 # Delete a category
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
     mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
+
+
+@app.route("/user_table")
+def user_table():
+    if "user" in session:
+        username = session["user"]
+        users = list(mongo.db.users.find())  # Retrieve user data from MongoDB
+        
+        if username == "admin":
+            # If the user is admin, get all users
+            return render_template("user_table.html", users=users, show_buttons=True)
+        else:
+            return render_template("user_table.html", users=users, show_buttons=False)
+    else:
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
