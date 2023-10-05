@@ -19,10 +19,16 @@ mongo = PyMongo(app)
 
 # Main route to display videos
 @app.route("/")
-@app.route("/get_videos")
 def get_videos():
-    videos = mongo.db.videos.find()
-    return render_template("videos.html", videos=videos, show_buttons=False)
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    categorized_videos = {}
+
+    for category in categories:
+        category_name = category["category_name"]
+        videos = list(mongo.db.videos.find({"category_name": category_name}))
+        categorized_videos[category_name] = videos
+
+    return render_template("videos.html", categorized_videos=categorized_videos, show_buttons=False)
 
 # Search route
 @app.route("/search", methods=["GET", "POST"])
@@ -187,6 +193,7 @@ def delete_category(category_id):
     mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

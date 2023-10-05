@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div class="row">
-
   <div class="col s12 m4 l3" id="fixed-nav-panel">
     <!-- Grey navigation panel -->
     <!-- This content will be: 3-columns-wide on large screens, 4-columns-wide on medium screens, 12-columns-wide on small screens -->
@@ -46,13 +44,12 @@
         </form>
       </div>
     </div>
-  
   </div>
 
-  <div class="col s12 m8 l10 right">
-    
+  <div class="col s12 m8 l9 right">
     <h3>New Videos</h3>
-
+    {% for category, videos in categorized_videos.items() %}
+    <h4>{{ category }}</h4>
     <div class="row">
       {% for video in videos %}
       <div class="col s12 m6 l4 xl3">
@@ -61,13 +58,12 @@
             <span class="card-title">{{ video.video_title }}</span>
             <div class="video-container">
               <iframe
-                src="{{ video.video_link }}?rel=0&modestbranding=1&controls=1"
+                src="{{ video.video_link }}?rel=0&modestbranding=1&controls=1&showinfo=0"
                 title="video player"
                 frameborder="20"
                 allowfullscreen
               ></iframe>
             </div>
-
             {% if show_buttons %}
             <div class="s3">
               {% if session.user|lower == video.created_by|lower %}
@@ -76,13 +72,11 @@
               {% endif %}
             </div>
             {% endif %}
-
             {% if video.hire_me == "hire" %}
             <a class="btn-floating halfway-fab waves-effect waves-light red">
               <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
             </a>
             {% endif %}
-
             <p>{{ video.video_description }}</p>
             <p><em>by: {{ video.created_by }}</em></p>
           </div>
@@ -94,9 +88,7 @@
       {% endif %}
       {% endfor %}
     </div>
-
+    {% endfor %}
   </div>
-
 </div>
-
 {% endblock %}
