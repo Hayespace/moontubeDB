@@ -28,20 +28,26 @@
 
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper">
-                    <a href="{{ url_for('get_videos') }}" class="brand-logo">Moontube</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-                        <i class="fas fa-bars"></i>
+              <div class="nav-wrapper" style="background-image: url('/static/assets/WesbiteBanner-clean.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <!-- Logo in the center -->
+                <a href="{{ url_for('get_videos') }}" class="brand-logo center">
+                  <img src="/static/assets/logo1.png" alt="Your Logo" class="responsive-img banner-logo">
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                  <i class="fas fa-bars"></i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                  <li><a href="{{ url_for('get_videos') }}">Home</a></li>
+                  <li><a href="{{ url_for('add_video') }}">Add Video</a></li>
+                  <li>
+                    <a class="dropdown-trigger" href="#" data-target="dropdown1">
+                      Menu <i class="material-icons right"></i>
                     </a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('get_videos') }}">Home</a></li>
-                        <li><a href="{{ url_for('add_video') }}">Add Video</a></li>
-                        <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Menu<i class="material-icons right"></i></a></li>
-                    </ul>
-                </div>
+                  </li>
+                </ul>
+              </div>
             </nav>
-        </div>
+          </div>
 
         <!-- Mobile Sidenav -->
         <ul class="sidenav" id="mobile-demo">

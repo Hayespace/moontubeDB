@@ -4,14 +4,25 @@ body {
   }
 
   #fixed-nav-panel {
-    position: fixed;    
-    top: 80px;            
+    background-color: rgba(176, 39, 114, 0.194);
+    position: fixed;  
+    top: 0;                
     bottom: 0;          
     left: 0;            
     width: 260px;      
     overflow-y: auto;  
     z-index: 1;         
   }
+
+  .logo {
+    margin-top: 80px;
+   
+  }
+
+  .banner-logo {
+    max-height: 50px; 
+    width: auto;
+}
 
 .flashes h4 {
     line-height: 2;
@@ -20,15 +31,7 @@ body {
 .btn-small {
     margin: 5px;
 }
-  
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
+    
 .card-style {
     display: block;
     color: whitesmoke;
@@ -37,5 +40,10 @@ body {
     font-size: large;
     text-align: left;
     background-color: rgba(176, 39, 114, 0.44);
-    padding: 0px;
+    padding: 5px;
+}
+
+.input {
+  padding-left: 10px;
+  padding-right: 10px;
 }

@@ -8,9 +8,9 @@
     <!-- This content will be: 3-columns-wide on large screens, 4-columns-wide on medium screens, 12-columns-wide on small screens -->
   
     <!-- Logo Section -->
-    <div class="logo-section">
+    <div class="logo-section center-align logo">
       <!-- Place your logo or brand image here -->
-      <img src="/assets/logo.jpg" alt="Your Logo">
+      <img height="150" width="150" src="/static/assets/logo2.png" alt="Your Logo">
     </div>
   
     <!-- Section 1 -->
@@ -29,41 +29,38 @@
   
     <!-- Section 3 -->
     <div class="section">
-      <!-- Content for Section 3 -->
-      <h5>Section 3</h5>
-      <!-- Add links or other content for this section -->
+      <div class="row">
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+          <div class="row input">
+            <div class="input-field">
+              
+              <input type="text" name="query" id="query" minlength="3" class="validate" required>
+              <label for="query">Search Videos</label>
+            </div>
+            <div class="valign-wrapper right">
+              <a href="{{ url_for('get_videos') }}" class="red btn-small text-shadow"><i class="fas fa-xmark"></i></a>
+              <button type="submit" class="light-blue darken-1 btn-small text-shadow">
+                <i class="fas fa-rocket"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   
   </div>
 
-  <div class="col s12 m8 l9">
+  <div class="col s12 m8 l9 center">
     
-    <h3 class="center-align">New Videos</h3>
+    <h3>New Videos</h3>
 
-    <div class="row">
-      <form action="{{ url_for('search') }}" method="post" class="col s12">
-        <div class="row valign-wrapper center-align">
-          <div class="input-field col s12 m8">
-            <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
-            <input type="text" name="query" id="query" minlength="3" class="validate" required>
-            <label for="query">Search Videos</label>
-          </div>
-          <div class="col s12 m4">
-            <a href="{{ url_for('get_videos') }}" class="red btn text-shadow">Reset</a>
-            <button type="submit" class="light-blue darken-1 btn text-shadow">
-              <i class="fas fa-search left"></i> Search
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
 
     <div class="row">
       {% for video in videos %}
       <div class="col s12 m6 l4">
         <div class="card card-style">
-          <div class="card-content">
-            <p>{{ video.category_name }}</p>
+          <div>
+            <span class="card-title">{{ video.video_title }}</span>
             <div class="video-container">
               <iframe
                 src="{{ video.video_link }}?rel=0&modestbranding=1&controls=0"
@@ -88,7 +85,7 @@
             </a>
             {% endif %}
 
-            <span class="card-title">{{ video.video_title }}</span>
+            
             <p>{{ video.video_description }}</p>
             <p><em>by: {{ video.created_by }}</em></p>
           </div>
