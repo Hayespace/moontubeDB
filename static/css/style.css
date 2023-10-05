@@ -1,5 +1,9 @@
 body {
-    background-image: linear-gradient(to bottom right, #000000, rgb(104, 34, 109));
+   /* background-image: linear-gradient(to bottom right, #000000, rgb(104, 34, 109)); */
+    background-image: url('/static/assets/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: snow;
   }
 
@@ -28,6 +32,15 @@ body {
     line-height: 2;
 }
 
+.flash-style {
+    color: whitesmoke;
+    box-shadow: 15px 10px 5px rgba(6, 3, 23, 0.65);
+    border-radius: 10px;
+    font-size: large;
+    background-color: rgba(176, 39, 114, 0.714);
+    padding: 5px;
+}
+
 .btn-small {
     margin: 5px;
 }
@@ -39,8 +52,17 @@ body {
     border-radius: 10px;
     font-size: large;
     text-align: left;
-    background-color: rgba(176, 39, 114, 0.44);
+    background-color: rgba(176, 39, 114, 0.714);
     padding: 5px;
+}
+
+.card-style2 {
+  color: whitesmoke;
+  box-shadow: 15px 10px 5px rgba(6, 3, 23, 0.65);
+  border-radius: 10px;
+  font-size: large;
+  background-color: rgba(176, 39, 114, 0.714);
+  padding: 30px;
 }
 
 .input {

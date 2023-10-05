@@ -146,7 +146,7 @@ def edit_video(video_id):
 def delete_video(video_id):
     mongo.db.videos.delete_one({"_id": ObjectId(video_id)})
     flash("Video Successfully Deleted")
-    return redirect(url_for("get_videos"))
+    return redirect(url_for("profile"))
 
 # Get all categories
 @app.route("/get_categories")

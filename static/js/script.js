@@ -33,6 +33,7 @@ $(document).ready(function(){
     }
 
   });
+  
   // Convert Video URL
   $(document).ready(function() {
     
