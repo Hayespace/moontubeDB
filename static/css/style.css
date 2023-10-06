@@ -65,7 +65,20 @@ body {
   padding: 30px;
 }
 
+.scroll {
+  
+  overflow: auto;
+  white-space: nowrap;
+}
+
+
 .input {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+@media only screen and (max-width: 720px) {
+  #fixed-nav-panel {
+    display: none;
+  }
 }
