@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-<h3 class="center-align">Categories</h3>
+<h3 class="center-align">Admin Portal</h3>
 
-<!-- Add a button to link to the "users" page -->
+
 <div class="row">
     <div class="col s12 center-align">
-        <a href="{{ url_for('list_users') }}" class="btn-large light-blue darken-2 text-shadow">
-            List Users <i class="fas fa-users right"></i>
+        <a href="{{ url_for('list_users') }}" class="btn-large btn-large-custom light-blue darken-2 text-shadow">
+            Users <i class="fas fa-users right"></i>
+        </a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('admin_videos') }}" class="btn-large btn-large-custom orange darken-2 text-shadow">
+            All Videos <i class="fas fa-film right"></i>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_category') }}" class="btn-large btn-large-custom light-blue darken-2 text-shadow">
+            Add Category <i class="fas fa-plus-circle right"></i>
         </a>
     </div>
 </div>
@@ -33,4 +50,3 @@
 </table>
 
 {% endblock %}
-

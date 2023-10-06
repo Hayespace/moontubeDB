@@ -232,13 +232,32 @@ def edit_profile():
         return redirect(url_for("login"))
 
 
+# Admin Users
 @app.route("/users")
 def list_users():
     if "user" in session:
         if session["user"] == "admin":
-            # Retrieve user data from MongoDB
             users = list(mongo.db.users.find())
             return render_template("users.html", users=users)
+    return redirect(url_for("login"))
+
+
+# Delete a user
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    if "user" in session and session["user"] == "admin":
+        mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+        flash("User Successfully Deleted")
+        return redirect(url_for("list_users"))
+    return redirect(url_for("login"))
+
+
+@app.route("/admin_videos")
+def admin_videos():
+    if "user" in session and session["user"] == "admin":
+        # Retrieve all videos from MongoDB
+        videos = list(mongo.db.videos.find())
+        return render_template("admin_videos.html", videos=videos)
     return redirect(url_for("login"))
 
 
