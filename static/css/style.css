@@ -65,17 +65,38 @@ body {
   padding: 30px;
 }
 
-.scroll {
-  
-  overflow: auto;
-  white-space: nowrap;
-}
-
-
 .input {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+  /* label color */
+  .input-field label {
+    color: whitesmoke;
+  }
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+    color: #ffca28;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #ffca28;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  /* valid color */
+  .input-field input[type=text].valid {
+    border-bottom: 1px solid #ffca28;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  /* invalid color */
+  .input-field input[type=text].invalid {
+    border-bottom: 1px solid #ffca28;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+    color: #ffca28;
+  }
 
 @media only screen and (max-width: 720px) {
   #fixed-nav-panel {

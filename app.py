@@ -228,6 +228,32 @@ def user_table():
         return redirect(url_for("login"))
 
 
+@app.route("/edit_profile", methods=["GET", "POST"])
+def edit_profile():
+    if "user" in session:
+        username = session["user"]
+        user = mongo.db.users.find_one({"username": username})
+
+        if request.method == "POST":
+            # Retrieve form data
+            new_username = request.form.get("username")
+            new_email = request.form.get("email")
+
+            # Update the user's information in the database
+            mongo.db.users.update_one(
+                {"username": username},
+                {"$set": {"username": new_username, "email": new_email}}
+            )
+
+            flash("Profile updated successfully!")
+            # Redirect to the profile page or any other appropriate page
+            return redirect(url_for("profile"))
+
+        return render_template("edit_profile.html", current_user=user)
+    else:
+        return redirect(url_for("login"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

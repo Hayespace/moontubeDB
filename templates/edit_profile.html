@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <h3 class="center-align">Edit Your Profile</h3>
+</div>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile') }}">
+        <div class="card-style2">
+
+            <!-- username -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-solid fa-user-astronaut prefix text-darken-4"></i>
+                    <input id="username" name="username" type="text" value="{{ current_user.username }}" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+            </div>
+
+            <!-- email -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-solid fa-envelope prefix text-darken-4"></i>
+                    <input id="email" name="email" type="email" value="{{ current_user.email }}" required>
+                    <label for="email">Email</label>
+                </div>
+            </div>
+
+            <!-- password -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-skull-crossbones prefix text-darken-4"></i>
+                    <input id="password" name="password" type="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$">
+                    <label for="password">New Password (Leave blank to keep current password)</label>
+                </div>
+            </div>
+
+            <!-- save changes -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large amber lighten-1">
+                        Save Changes <i class="fas fa-rocket right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <p class="center-align">
+            <a href="{{ url_for('profile') }}" class="light-blue-text text-darken-4">Back to Profile</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

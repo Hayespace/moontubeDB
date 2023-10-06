@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-
 <div class="row">
     <div class="col s12 m8 offset-m2">
-        <div class="card-style">
+        <div>
             <h3 class="center-align">
-                {{ username }}'s Portal
+              Hi {{ username }}!
             </h3>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_video') }}" class="btn-large green lighten-2 text-shadow">
+            New Video <i class="fas fa-tv right"></i>
+        </a>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col s12">
@@ -25,7 +32,9 @@
                     <th>Hire Me</th>
                     <th>Created By</th>
                     <th>Edit / Delete</th>
-                    <a href="{{ url_for('add_video') }}" class="btn">New Video</a>
+                    <a href="{{ url_for('edit_profile') }}" class="btn blue lighten-2 text-shadow">
+                        Edit Profile <i class="fas fa-user-astronaut right"></i>
+                      </a>
                 </tr>
             </thead>
             <tbody>
