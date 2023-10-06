@@ -8,11 +8,13 @@ body {
 
   }
 
-  h3, h2 {
-    font-family: 'Archivo Black', sans-serif;
+  h3, h2, h4 {
+    font-family: 'Bebas Neue', sans-serif;
   }
 
-  
+  .c-by {
+
+  }
 
   #fixed-nav-panel {
     background-color: rgba(176, 39, 114, 0.194);
