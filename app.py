@@ -149,7 +149,7 @@ def edit_video(video_id):
         }
         mongo.db.videos.update_one({"_id": ObjectId(video_id)}, {"$set": submit})
         flash("Video Successfully Updated")
-        return redirect(url_for("profile"))
+        return redirect(url_for("get_categories"))
 
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
@@ -161,7 +161,7 @@ def edit_video(video_id):
 def delete_video(video_id):
     mongo.db.videos.delete_one({"_id": ObjectId(video_id)})
     flash("Video Successfully Deleted")
-    return redirect(url_for("profile"))
+    return redirect(url_for("get_categories"))
 
 
 # Get all categories

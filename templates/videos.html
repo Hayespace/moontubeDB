@@ -68,8 +68,13 @@
       {% for video in videos %}
       <div class="col s6 m6 l4 xl3">
         <div class="card card-style">
+          <h2><span class="card-title">{{ video.video_title }}</span></h2>
+          {% if video.hire_me == "hire" %}
+              <a class="btn-floating halfway-fab waves-effect waves-light red">
+                <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
+              </a>
+              {% endif %}
           <div>
-            <span class="card-title">{{ video.video_title }}</span>
             <div class="video-container">
               <iframe
                 src="{{ video.video_link }}?rel=0&modestbranding=1&controls=1&showinfo=0"
@@ -78,12 +83,8 @@
                 allowfullscreen
               ></iframe>
             </div>
-            {% if video.hire_me == "hire" %}
-            <a class="btn-floating halfway-fab waves-effect waves-light red">
-              <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
-            </a>
-            {% endif %}
             <p><em>"{{ video.video_description }}"</em></p>
+            
             <p>by: {{ video.created_by }}</p>
           </div>
         </div>
