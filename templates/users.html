@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">User Management</h3>
+
+<!-- Users Table -->
+<table class="responsive-table striped">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user["_id"] }}</td>
+            <td>{{ user["username"] }}</td>
+            <td>{{ user["email"] }}</td>
+            <td>
+                <a href="{{ url_for('edit_profile') }}" class="btn green accent-4">Edit</a>
+                <a href="" class="btn light-blue lighten-1">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

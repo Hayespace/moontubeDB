@@ -39,11 +39,11 @@ def search():
     videos = list(mongo.db.videos.find({"$text": {"$search": query}}))
     return render_template("videos.html", videos=videos, show_buttons=False)
 
+
 # User registration
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # Check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -57,7 +57,6 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # Put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         return redirect(url_for("profile"))
@@ -68,12 +67,10 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # Check if username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            # Ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
@@ -81,12 +78,10 @@ def login():
                         request.form.get("username")))
                     return redirect(url_for("profile"))
             else:
-                # Invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
         else:
-            # Username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
@@ -213,21 +208,7 @@ def delete_category(category_id):
     return redirect(url_for("get_categories"))
 
 
-@app.route("/user_table")
-def user_table():
-    if "user" in session:
-        username = session["user"]
-        users = list(mongo.db.users.find())  # Retrieve user data from MongoDB
-        
-        if username == "admin":
-            # If the user is admin, get all users
-            return render_template("user_table.html", users=users, show_buttons=True)
-        else:
-            return render_template("user_table.html", users=users, show_buttons=False)
-    else:
-        return redirect(url_for("login"))
-
-
+# Edit Profile
 @app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
     if "user" in session:
@@ -235,23 +216,30 @@ def edit_profile():
         user = mongo.db.users.find_one({"username": username})
 
         if request.method == "POST":
-            # Retrieve form data
             new_username = request.form.get("username")
             new_email = request.form.get("email")
 
-            # Update the user's information in the database
             mongo.db.users.update_one(
                 {"username": username},
                 {"$set": {"username": new_username, "email": new_email}}
             )
 
             flash("Profile updated successfully!")
-            # Redirect to the profile page or any other appropriate page
             return redirect(url_for("profile"))
 
         return render_template("edit_profile.html", current_user=user)
     else:
         return redirect(url_for("login"))
+
+
+@app.route("/users")
+def list_users():
+    if "user" in session:
+        if session["user"] == "admin":
+            # Retrieve user data from MongoDB
+            users = list(mongo.db.users.find())
+            return render_template("users.html", users=users)
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
