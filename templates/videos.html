@@ -63,10 +63,10 @@
   <div class="col s12 m8 l9 xl12 right">
     <h3>New Videos</h3>
     {% for category, videos in categorized_videos.items() %}
-    <h4>{{ category }}</h4>
+    <h4><u>{{ category }}</u></h4>
     <div class="row scroll">
       {% for video in videos %}
-      <div class="col s6 m6 l4 xl3">
+      <div class="col s12 m6 l4 xl3">
         <div class="card card-style">
           <h2><span class="card-title">{{ video.video_title }}</span></h2>
          
@@ -82,11 +82,13 @@
             <p><em>"{{ video.video_description }}"</em></p>
             
             <p class="red-text">{{ video.created_by }}
+
               {% if video.hire_me == "hire" %}
-              <a class="btn-floating halfway-fab waves-effect waves-light red">
+              <a class="btn-floating waves-effect waves-light red right">
                 <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
               </a>
               {% endif %}
+
             </p>
           </div>
         </div>
