@@ -91,4 +91,19 @@ nav {
   #fixed-nav-panel {
     display: none;
   }
+
+  body {
+    background-color: white;
+    background-image: url('/static/assets/mobilebg.png');
+  }
+
+  .card-style {
+    color: whitesmoke;
+    box-shadow: 15px 10px 5px rgba(18, 9, 72, 0.556);
+    border-radius: 5px;
+    font-size: medium;
+    text-align: left;
+    background-color:rgba(37, 29, 186, 0.096);
+    padding: 0%;
+}
 }
