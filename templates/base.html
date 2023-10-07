@@ -59,7 +59,10 @@
         <!-- Mobile Sidenav -->
         <ul class="sidenav" id="mobile-demo">
             <li>
-                <h4 class="center-align">Moontube</h4>
+                 <!-- Logo Section -->
+            <div class="logo-section center-align logo">
+              <img height="100" width="100" src="/static/assets/logo2.png" alt="Your Logo">
+            </div>
             </li>
             <li><a href="{{ url_for('get_videos') }}">Home</a></li>
             {% if session.user %}
