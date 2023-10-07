@@ -84,8 +84,9 @@ nav {
   padding-right: 10px;
 }
 
-
-  
+.dropdown-logo {
+  padding-top: 5%;
+}
 
 @media only screen and (max-width: 720px) {
   #fixed-nav-panel {
@@ -95,6 +96,9 @@ nav {
   body {
     background-color: white;
     background-image: url('/static/assets/mobilebg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .card-style {
