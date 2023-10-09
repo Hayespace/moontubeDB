@@ -2,36 +2,43 @@
 
 <div class="row">
 
-    <div class="col m4 l2 xl2" id="fixed-nav-panel">
+    <div class="col m4 l2" id="fixed-nav-panel">
         <!-- Logo Section -->
         <div class="logo-section center-align logo">
-            <a href="{{ url_for('get_videos') }}">
             <img height="150" width="150" src="/static/assets/logo2.png" alt="Your Logo">
-        </a>
         </div>
         <!-- Section 1 -->
-        <div class="section">
-            <!-- Content for Section 1 -->
-            <h5>Hire a Moontuber</h5>
-            <!-- Add links or other content for this section -->
+        <div class="section center-align">
+           <a href="#">
+            <h4>  Hire a Moontuber <i class="fa fa-rocket">
+            </i></h4>
+          
+            </i>
+            </a>
         </div>
         <!-- Section 2 -->
         <div class="section">
             <!-- Content for Section 2 -->
-            <h5>Favourites</h5>
+            <h5>Featured Videos</h5>
             <!-- Add links or other content for this section -->
         </div>
         <!-- Section 3 -->
         <div class="section">
-            <!-- Content for Section 2 -->
-            <h5>Something</h5>
+            <!-- Content for Section 3 -->
+            <h5>Trending Videos</h5>
             <!-- Add links or other content for this section -->
         </div>
         <!-- Section 4 -->
         <div class="section">
-            <!-- Content for Section 2 -->
-            <h5>Something</h5>
-            <!-- Add links or other content for this section -->
+          <h4>Top Categories</h4> 
+        <ul>
+          <li>TRENDING</li>
+          <li>ETH</li>
+          <li>BSC</li>
+          <li>POLYGON</li>
+          <li>DEFI</li>
+          <li>NFT</li>
+        </ul>
         </div>
 
         
@@ -39,7 +46,7 @@
     </div>
 
 
-  <div class="col s12 m4 l10 xl10 right">
+  <div class="col s12 m8 l10 xl10 right">
     <h2 class="red-text">{{ video.created_by }}'s Video</h2>
     <h2>{{ video.video_title }}</h2>
     
