@@ -84,9 +84,6 @@ nav {
   padding-right: 10px;
 }
 
-.dropdown-logo {
-  padding-top: 5%;
-}
 
 @media only screen and (max-width: 720px) {
   #fixed-nav-panel {
@@ -103,11 +100,17 @@ nav {
 
   .card-style {
     color: whitesmoke;
-    box-shadow: 15px 10px 5px rgba(18, 9, 72, 0.556);
+    box-shadow: none;
     border-radius: 5px;
     font-size: medium;
     text-align: left;
     background-color:rgba(37, 29, 186, 0.096);
     padding: 0%;
 }
+
+.dropdown-logo {
+  padding-top: 5%;
 }
+
+}
+
