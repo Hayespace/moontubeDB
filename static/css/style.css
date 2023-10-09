@@ -16,7 +16,10 @@ body {
     color: inherit; 
   }
 
-
+  .vid-row {
+    margin-right: 2%;
+  }
+  
   #fixed-nav-panel {
     background-color: rgba(176, 39, 114, 0.194);
     position: fixed;  
@@ -80,7 +83,6 @@ nav {
   padding-left: 10px;
   padding-right: 10px;
 }
-
 
 @media only screen and (max-width: 720px) {
   #fixed-nav-panel {
