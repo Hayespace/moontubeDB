@@ -12,15 +12,17 @@ body {
     font-family: 'Bebas Neue', sans-serif;
   }
 
+  a { 
+    color: inherit; 
+  }
+
+
   #fixed-nav-panel {
     background-color: rgba(176, 39, 114, 0.194);
     position: fixed;  
     top: 0;                
     bottom: 0;          
     left: 0;            
-    width: 260px;      
-    overflow-y: auto;  
-    z-index: 1;         
   }
 
 nav {
@@ -63,11 +65,6 @@ nav {
     text-align: left;
     background-color:rgba(37, 29, 186, 0.096);
     padding: 0%;
-}
-
-.video-container {
- 
-  margin-top: 0;
 }
 
 .card-style2 {

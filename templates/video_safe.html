@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% block content %} <div class="row">
-    <div class="col s12 m4 l9" id="fixed-nav-panel">
+{% extends "base.html" %} {% block content %} <div class="row" id="row-id">
+    <div class="col m4 l3" id="fixed-nav-panel">
         <!-- Logo Section -->
         <div class="logo-section center-align logo">
-            <a href="{{ url_for('get_videos') }}"><img height="150" width="150" src="/static/assets/logo2.png" alt="Your Logo"></a>
+            <img height="150" width="150" src="/static/assets/logo2.png" alt="Your Logo">
         </div>
         <!-- Section 1 -->
         <div class="section">
@@ -13,22 +13,21 @@
         <!-- Section 2 -->
         <div class="section">
             <!-- Content for Section 2 -->
-            <h5>Featured Videos</h5>
+            <h5>Favourites</h5>
             <!-- Add links or other content for this section -->
         </div>
         <!-- Section 3 -->
         <div class="section">
             <!-- Content for Section 2 -->
-            <h5>Trending Videos</h5>
+            <h5>Something</h5>
             <!-- Add links or other content for this section -->
         </div>
         <!-- Section 4 -->
         <div class="section">
             <!-- Content for Section 2 -->
-            <h5>Favourites</h5>
+            <h5>Something</h5>
             <!-- Add links or other content for this section -->
         </div>
-
         <!-- Search Bar -->
         <div class="section search-bar">
             <div class="row">
@@ -51,22 +50,41 @@
             </div>
         </div>
     </div>
-
-
-    <!-- video_detail.html -->
-    
-    <h2>{{ video.video_title }}</h2>
-    <p class="red-text">Uploaded by: {{ video.created_by }}</p>
-    <div class="video-container">
-        <iframe src="{{ video.video_link }}?rel=0&modestbranding=1&controls=1&showinfo=0" title="video player" allowfullscreen></iframe>
+    <div class="col s12 m8 l12 xl12 right">
+        <h3>New Videos</h3> 
+            {% for category, videos in categorized_videos.items() %} 
+            <h4><u>{{ category }}</u></h4>
+        <div class="row"> 
+          
+        {% for video in videos %} 
+            <div class="col s12 m6 l4 xl3 scroll">
+  
+  
+                <!-- Video Card -->
+                <div class="card card-style">
+                  <a class="#" href="{{ url_for('video_detail', video_id=video._id) }}">
+                    <h2>
+                      <span class="card-title">{{ video.video_title }}</span>
+                    </h2>
+                    <div>
+                      <div class="video-container">
+                        <iframe src="{{ video.video_link }}?rel=0&modestbranding=1&controls=1&showinfo=0" title="video player" allowfullscreen></iframe>
+                      </div>
+                      <p><em>"{{ video.video_description }}"</em></p>
+                      <p class="red-text">{{ video.created_by }}
+                        {% if video.hire_me == "hire" %}
+                        <a class="btn-floating waves-effect waves-light red right">
+                          <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
+                        </a>
+                        {% endif %}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+  
+  
+               
+            </div> {% if loop.index % 5 == 0 %} </div>
+        <div class="row"> {% endif %} {% endfor %} </div> {% endfor %}
     </div>
-    <p>
-        <em>"{{ video.video_description }}"</em>
-    </p>
-    <!-- Add any additional content  -->
-   
-</div>
-
-
-
-</div> {% endblock %}
+  </div> {% endblock %}
