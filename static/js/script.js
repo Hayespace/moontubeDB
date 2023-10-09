@@ -3,6 +3,8 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
     $('select').formSelect();
     $(".dropdown-trigger").dropdown();
+    $('.modal').modal();
+    
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {
@@ -93,7 +95,6 @@ videoLinkInput.addEventListener('input', updateVideoPreview);
 
 // Initial update of video preview
 updateVideoPreview();
-
 
 
 

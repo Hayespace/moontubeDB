@@ -261,6 +261,13 @@ def admin_videos():
     return redirect(url_for("login"))
 
 
+@app.route("/video_detail/<video_id>")
+def video_detail(video_id):
+    # Retrieve the video details based on the video_id
+    video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
+    return render_template("video_detail.html", video=video)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
