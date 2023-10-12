@@ -79,7 +79,39 @@
         <em>"{{ video.video_description }}"</em>
     </p>
 
-    <div>Comments section here</div>
+    <div>
+<h4>Comments</h4>
+<!-- Comment Submission Form -->
+<form action="{{ url_for('submit_comment', video_id=video._id) }}" method="post">
+    <div class="input-field">
+        <input type="text" name="comment" id="comment" class="validate" required>
+        <label for="comment">Write a comment</label>
+    </div>
+    <button type="submit" class="btn light-blue darken-1">Submit Comment</button>
+</form>
+
+<!-- List for Comments with Transparent Background -->
+<ul class="comments">
+    {% for comment in video_comments %}
+        <li class="collection-item">
+            <strong>{{ comment.user }}:</strong>
+            {{ comment.text }}
+            <div class="right-align">
+                {% if comment.user == current_user %}  <!-- Check if the comment is created by the current user -->
+                    <a href="{{ url_for('edit_comment', video_id=video._id, comment_id=comment._id) }}" class="btn-small">Edit</a>
+                    <a href="{{ url_for('delete_comment', video_id=video._id, comment_id=comment._id) }}" class="btn-small red">Delete</a>
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+      
+  </div>
+  
+</div>
+
+
 
   </div>
   

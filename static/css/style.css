@@ -94,6 +94,10 @@ nav {
   padding-right: 10px;
 }
 
+.comments {
+  color: whitesmoke;
+}
+
 @media only screen and (max-width: 720px) {
   #fixed-nav-panel {
     display: none;
