@@ -256,10 +256,10 @@ def delete_user(user_id):
     return redirect(url_for("login"))
 
 
+# Retrieve all videos from MongoDB
 @app.route("/admin_videos")
 def admin_videos():
     if "user" in session and session["user"] == "admin":
-        # Retrieve all videos from MongoDB
         videos = list(mongo.db.videos.find())
         return render_template("admin_videos.html", videos=videos)
     return redirect(url_for("login"))
@@ -268,12 +268,11 @@ def admin_videos():
 @app.route("/video_detail/<video_id>")
 def video_detail(video_id):
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
-
-
     if video:
         # Fetch comments related to this video
         video_comments = list(mongo.db.comments.find({"video_id": video_id}))
         return render_template("video_detail.html", video=video, video_comments=video_comments)
+        return render_template("video_detail.html", video=video, video_comments=video_comments, current_user=session.get("user"))
     else:
         flash("Video not found")
         return redirect(url_for("get_videos"))
@@ -284,16 +283,10 @@ def video_detail(video_id):
 def moontuber_profile(username):
     # Fetch the user's data based on the username
     user = mongo.db.users.find_one({"username": username})
-
     # Fetch all videos created by the user
     user_uploaded_videos = list(mongo.db.videos.find({"created_by": username}))
 
     return render_template('moontuber_profile.html', user=user, user_uploaded_videos=user_uploaded_videos)
-
-    # Retrieve "featured" videos
-    featured_videos = list(mongo.db.videos.find({"category_name": "featured"}))
-
-    return render_template("videos.html", categorized_videos=categorized_videos, featured_videos=featured_videos, show_buttons=False)
 
 
 @app.route("/submit_comment/<video_id>", methods=["POST"])
@@ -316,34 +309,6 @@ def submit_comment(video_id):
             flash("Video not found")
 
     return redirect(url_for("video_detail", video_id=video_id))
-
-
-# Edit a comment
-@app.route("/edit_comment/<video_id>/<comment_id>", methods=["GET", "POST"])
-def edit_comment(video_id, comment_id):
-    if request.method == "POST":
-        updated_comment_text = request.form.get("updated_comment")
-
-        # Update the comment in the database (you should implement this logic)
-        # Example: mongo.db.comments.update_one({"_id": ObjectId(comment_id)}, {"$set": {"text": updated_comment_text}})
-
-        flash("Comment Updated Successfully")
-        return redirect(url_for("video_detail", video_id=video_id))
-
-    # Retrieve the existing comment
-    comment = mongo.db.comments.find_one({"_id": ObjectId(comment_id)})
-
-    return render_template("edit_comment.html", comment=comment, video_id=video_id)
-
-# Delete a comment
-@app.route("/delete_comment/<video_id>/<comment_id>")
-def delete_comment(video_id, comment_id):
-    # Remove the comment from the database (you should implement this logic)
-    # Example: mongo.db.comments.delete_one({"_id": ObjectId(comment_id)})
-
-    flash("Comment Deleted Successfully")
-    return redirect(url_for("video_detail", video_id=video_id))
-
 
 
 if __name__ == "__main__":
