@@ -259,13 +259,26 @@ def admin_videos():
         videos = list(mongo.db.videos.find())
         return render_template("admin_videos.html", videos=videos)
     return redirect(url_for("login"))
+    
 
-
+# Retrieve the video details based on the video_id
 @app.route("/video_detail/<video_id>")
 def video_detail(video_id):
-    # Retrieve the video details based on the video_id
+    
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
     return render_template("video_detail.html", video=video)
+
+
+@app.route('/moontuber_profile/<username>')
+def moontuber_profile(username):
+    # Fetch the user's data based on the username
+    user = mongo.db.users.find_one({"username": username})
+
+    # Fetch all videos created by the user
+    user_uploaded_videos = list(mongo.db.videos.find({"created_by": username}))
+
+    return render_template('moontuber_profile.html', user=user, user_uploaded_videos=user_uploaded_videos)
+
 
 
 if __name__ == "__main__":

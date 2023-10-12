@@ -19,6 +19,9 @@
     </div>
 </div>
 
+<h4 class="center-align">
+    My Videos
+  </h4>
 
 <div class="row">
     <div class="col s12">
@@ -30,7 +33,6 @@
                     <th>Description</th>
                     <th>Video Link</th>
                     <th>Hire Me</th>
-                    <th>Created By</th>
                     <th>Edit / Delete</th>
                     <a href="{{ url_for('edit_profile') }}" class="btn blue lighten-2 text-shadow">
                         Edit Profile <i class="fas fa-user-astronaut right"></i>
@@ -49,7 +51,6 @@
                         </a>
                     </td>
                     <td>{{ video.hire_me }}</td>
-                    <td>{{ video.created_by }}</td>
                     <td>
                         {% if username == "admin" or username == video.created_by %}
                         <a href="{{ url_for('edit_video', video_id=video._id) }}" class="btn-small light-blue lighten-1">Edit</a>

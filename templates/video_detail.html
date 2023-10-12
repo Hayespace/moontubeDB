@@ -5,49 +5,71 @@
     <div class="col m4 l2" id="fixed-nav-panel">
         <!-- Logo Section -->
         <div class="logo-section center-align logo">
+          <a href="{{ url_for('get_videos') }}">
             <img height="150" width="150" src="/static/assets/logo2.png" alt="Your Logo">
+            <h3 class="title-logo"><b>MOONTUBE</b></h3>
+          </a>
         </div>
-        <!-- Section 1 -->
-        <div class="section center-align">
-           <a href="#">
-            <h4>  Hire a Moontuber <i class="fa fa-rocket">
-            </i></h4>
-          
-            </i>
-            </a>
-        </div>
-        <!-- Section 2 -->
-        <div class="section">
-            <!-- Content for Section 2 -->
-            <h5>Featured Videos</h5>
-            <!-- Add links or other content for this section -->
-        </div>
-        <!-- Section 3 -->
-        <div class="section">
-            <!-- Content for Section 3 -->
-            <h5>Trending Videos</h5>
-            <!-- Add links or other content for this section -->
-        </div>
-        <!-- Section 4 -->
-        <div class="section">
-          <h4>Top Categories</h4> 
-        <ul>
-          <li>TRENDING</li>
-          <li>ETH</li>
-          <li>BSC</li>
-          <li>POLYGON</li>
-          <li>DEFI</li>
-          <li>NFT</li>
-        </ul>
-        </div>
+            <!-- Section 1 -->
+    <div class="section center-align">
+      <a href="#">
+       <h4><i class="fa fa-user-astronaut prefix">
+       </i>  Hire a Moontuber </h4>
+       
+     </a>
+   </div>
+   <!-- Section 2 -->
+   <div class="section">
+       <!-- Content for Section 2 -->
+       <a href="#"></a><h5>Featured Videos</h5></a>
+       <!-- Add links or other content for this section -->
+   </div>
+   <!-- Section 3 -->
+   <div class="section">
+       <!-- Content for Section 3 -->
+       <a href="#"><h5>Trending Videos</h5></a>
+       <!-- Add links or other content for this section -->
+   </div>
+   <!-- Section 4 -->
+   <div class="section">
+     <h4>Top Categories</h4> 
+   <ul>
+     <li><a href="#">TRENDING</a></li>
+     <li><a href="#">ETH</a></li>
+     <li><a href="#">BSC</a></li>
+     <li></a href="#">POLYGON</a></li>
+   </ul>
+   </div>
 
-        
-        
+
+     <!-- Search Bar -->
+    <div class="section search-bar">
+        <div>
+            <form action="{{ url_for('search') }}" method="post" class="col s12">
+                <div class="row input">
+                    <div class="input-field">
+                        <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                        <label for="query">Search Videos</label>
+                    </div>
+                    <div class="valign-wrapper right">
+                        <a href="{{ url_for('get_videos') }}" class="red btn-small text-shadow">
+                            <i class="fas fa-xmark"></i>
+                        </a>
+                        <button type="submit" class="light-blue darken-1 btn-small text-shadow">
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+      
+        
+  </div>
 
 
   <div class="col s12 m8 l10 xl10 right">
-    <h2 class="red-text">{{ video.created_by }}'s Video</h2>
+    <h2 class="amber-text text-lighten-1">{{ video.created_by }}'s Video</h2>
     <h2>{{ video.video_title }}</h2>
     
     <div class="video-container">
