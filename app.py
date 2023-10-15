@@ -18,15 +18,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-# Function to save uploaded file
-def save_file(file):
-    if file:
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
-        return filename
-    return None
-
 
 # Main route to display videos
 @app.route("/")
@@ -252,6 +243,36 @@ def edit_profile():
     else:
         return redirect(url_for("login"))
 
+
+# Moontuber Profile
+@app.route('/moontuber_profile/<username>')
+def moontuber_profile(username):
+    # Fetch the user's data based on the username
+    user = mongo.db.users.find_one({"username": username})
+    # Fetch all videos created by the user
+    user_uploaded_videos = list(mongo.db.videos.find({"created_by": username}))
+
+    return render_template('moontuber_profile.html', user=user, user_uploaded_videos=user_uploaded_videos)
+
+
+@app.route("/moontuber_dir")
+def moontuber_directory():
+    # Use an aggregation pipeline to join users and videos
+    pipeline = [
+        {
+            "$lookup": {
+                "from": "videos",
+                "localField": "username",
+                "foreignField": "created_by",
+                "as": "user_videos"
+            }
+        }
+    ]
+
+    users = mongo.db.users.aggregate(pipeline)
+
+    return render_template("moontuber_dir.html", users=users)
+
 # Admin Users
 @app.route("/users")
 def list_users():
@@ -279,8 +300,9 @@ def admin_videos():
         videos = list(mongo.db.videos.find())
         return render_template("admin_videos.html", videos=videos)
     return redirect(url_for("login"))
-    
 
+    
+# Video Selected and Comments
 @app.route("/video_detail/<video_id>")
 def video_detail(video_id):
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
@@ -292,17 +314,6 @@ def video_detail(video_id):
     else:
         flash("Video not found")
         return redirect(url_for("get_videos"))
-
-
-
-@app.route('/moontuber_profile/<username>')
-def moontuber_profile(username):
-    # Fetch the user's data based on the username
-    user = mongo.db.users.find_one({"username": username})
-    # Fetch all videos created by the user
-    user_uploaded_videos = list(mongo.db.videos.find({"created_by": username}))
-
-    return render_template('moontuber_profile.html', user=user, user_uploaded_videos=user_uploaded_videos)
 
 
 @app.route("/submit_comment/<video_id>", methods=["POST"])
