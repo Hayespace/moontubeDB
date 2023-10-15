@@ -15,7 +15,17 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+
 mongo = PyMongo(app)
+
+# Function to save uploaded file
+def save_file(file):
+    if file:
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+        return filename
+    return None
 
 
 # Main route to display videos
@@ -222,10 +232,17 @@ def edit_profile():
         if request.method == "POST":
             new_username = request.form.get("username")
             new_email = request.form.get("email")
+            about_me = request.form.get("about_me")  # Added about_me field
+
+            user_data = {
+                "username": new_username,
+                "email": new_email,
+                "about_me": about_me  # Store "About Me" in the user document
+            }
 
             mongo.db.users.update_one(
                 {"username": username},
-                {"$set": {"username": new_username, "email": new_email}}
+                {"$set": user_data}
             )
 
             flash("Profile updated successfully!")
@@ -234,7 +251,6 @@ def edit_profile():
         return render_template("edit_profile.html", current_user=user)
     else:
         return redirect(url_for("login"))
-
 
 # Admin Users
 @app.route("/users")
@@ -304,9 +320,9 @@ def submit_comment(video_id):
                 "video_id": video_id
             }
             mongo.db.comments.insert_one(comment)
-            flash("Comment added successfully!")
+            flash("Comment added successfully!", "success")
         else:
-            flash("Video not found")
+            flash("Video not found", "error")
 
     return redirect(url_for("video_detail", video_id=video_id))
 

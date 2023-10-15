@@ -30,17 +30,6 @@
        <a href="#"><h5>Trending Videos</h5></a>
        <!-- Add links or other content for this section -->
    </div>
-   <!-- Section 4 -->
-   <div class="section">
-     <h4>Top Categories</h4> 
-   <ul>
-     <li><a href="#">TRENDING</a></li>
-     <li><a href="#">ETH</a></li>
-     <li><a href="#">BSC</a></li>
-     <li></a href="#">POLYGON</a></li>
-   </ul>
-   </div>
-
 
      <!-- Search Bar -->
     <div class="section search-bar">
@@ -69,7 +58,7 @@
 
 
   <div class="col s12 m8 l10 xl10 right">
-    <h2 class="amber-text text-lighten-1">{{ video.created_by }}'s Video</h2>
+    <a href="{{ url_for('moontuber_profile', username=video.created_by) }}"><h2 class="amber-text text-lighten-1">{{ video.created_by }}'s Video</h2></a>
     <h2>{{ video.video_title }}</h2>
     
     <div class="video-container">
@@ -77,6 +66,11 @@
     </div>
     <p>
         <em>"{{ video.video_description }}"</em>
+        {% if video.hire_me == "hire" %}
+        <a href="{{ url_for('moontuber_profile', username=video.created_by) }}" class="btn-floating waves-effect waves-light red right">
+          <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
+        </a>
+        {% endif %}
     </p>
 
     <div>
