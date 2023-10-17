@@ -6,23 +6,19 @@
     <div class="row card-style2">
         <form class="col s12" method="POST" action="{{ url_for('add_video') }}">
     <!--Choose Category-->
-            <div class="row">
-				<div class="input-field col s12">
-                    <i class="fas fa-folder-open prefix"></i>
-					<select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose Category</option>
-                        {% for category in categories %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                        {% endfor %}
-                    </select>
-					<label for="category_name">Video Category</label>
-				</div>
-			</div>
+    <div class="row" id="category_radio_buttons">
+        {% for category in categories %}
+          <label>
+            <input class="with-gap" name="category_name" type="radio" value="{{ category.category_name }}" {% if loop.first %}checked{% endif %} required />
+            <span>{{ category.category_name }}</span>
+          </label>
+        {% endfor %}
+      </div>
     <!--Video Title-->        
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12 text-color">
                     <i class="fas fa-video prefix"></i>
-                    <input id="video_title" name="video_title" minlength="1" maxlength="30"
+                    <input class="text-color" id="video_title" name="video_title" minlength="1" maxlength="50"
                         type="text" class="validate" required>
                     <label for="video_title">Video Title</label>
                 </div>
@@ -31,19 +27,19 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix"></i>
-                    <textarea id="video_description" name="video_description" minlength="5"
-                        maxlength="50" class="materialize-textarea validate" required></textarea>
+                    <textarea class="text-color" id="video_description" name="video_description" minlength="5"
+                        maxlength="200" class="materialize-textarea validate" required></textarea>
                     <label for="video_description">Video Description</label>
                 </div>
             </div>
    
 
-    <!-- Video preview -->
+    <!-- Video link and preview -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-link prefix"></i>
-                    <input id="video_link_input" name="video_link" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required>
+                    <input class="text-color" id="video_link_input" name="video_link" minlength="5"
+                        maxlength="50" class="materialize-textarea validate" required>
                     <label for="video_link_input">Video Link</label>
                 </div>
                 <div class="col s12">

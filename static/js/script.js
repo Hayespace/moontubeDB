@@ -97,11 +97,7 @@ videoLinkInput.addEventListener('input', updateVideoPreview);
 updateVideoPreview();
 
 
-   // Initialize collapsible elements
-   document.addEventListener('DOMContentLoaded', function () {
-    var collapsibles = document.querySelectorAll('.collapsible');
-    M.Collapsible.init(collapsibles, {});
-});
+
 
 
   

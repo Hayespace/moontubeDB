@@ -107,6 +107,17 @@ nav {
   color: whitesmoke;
 }
 
+
+
+#category_radio_buttons {
+  text-align: center;
+}
+
+#category_radio_buttons label {
+  display: inline-block;
+  margin-right: 10px; 
+}
+
 /* label color */
 .input-field label {
   color: whitesmoke;
@@ -132,7 +143,11 @@ nav {
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-  color: #000;
+  color: whitesmoke;
+}
+
+.text-color {
+  color: whitesmoke;
 }
 
 @media only screen and (max-width: 720px) {

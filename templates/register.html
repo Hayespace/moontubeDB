@@ -7,6 +7,23 @@
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
             <div class="card-style2">
 
+
+                 <!-- Select your spirit animal -->
+            <div class="row">
+                <div class="col s12">
+                    <span class="horizontal-icons" id="category_radio_buttons">
+                        {% for animal in ["hippo", "otter", "dragon", "shrimp", "locust", "frog"] %}
+                        <p>
+                            <label>
+                                <input class="with-gap" name="selected_animal" type="radio" value="{{ animal }}" {% if animal == selected_animal %}checked{% endif %}>
+                                <span><i class="fa-solid fa-{{ animal }} fa-3x white-text"></i></span>
+                            </label>
+                        </p>
+                        {% endfor %}
+                    </span>
+                </div>
+            </div>
+
                <!-- username -->
                <div class="row">
                 <div class="input-field col s12">

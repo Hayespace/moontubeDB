@@ -12,15 +12,10 @@
 
     <!-- Section 1 -->
     <div class="section center-align">
-       <a href="#">
-        <h4><i class="fa fa-user-astronaut prefix">
-        </i>  Hire a Moontuber </h4>
+       <a href="{{ url_for('moontuber_directory') }}">
+        <h4><i class="fas fa-user-astronaut prefix"></i>  Hire a Moontuber</h4>
       </a>
     </div>
-
-
-    
-    
 
     <!-- Search Bar -->
     <div class="section search-bar">
@@ -46,12 +41,13 @@
   </div>
 
   <div class="col s12 m8 l10 xl10 right">
-   
     <div class="row">
         {% for user in users %}
         <div class="col s12 m6 l4 xl3">
             <div class="card card-style2">
-                <!-- Card content for user -->
+                <div class="center-align">
+                    <i class="fas {{ user.selected_animal }} fa-5x"></i>
+                </div>
                 <div class="card-content">
                     <span class="card-title">{{ user.username }}</span>
                     <p>Email: {{ user.email }}</p>
@@ -66,6 +62,6 @@
         </div>
         {% endfor %}
     </div>
-    
+  </div>
 </div>
 {% endblock %}

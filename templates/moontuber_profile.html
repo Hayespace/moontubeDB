@@ -11,24 +11,13 @@
     </div>
     <!-- Section 1 -->
     <div class="section center-align">
-       <a href="#">
+       <a href="{{ url_for('moontuber_directory') }}">
         <h4><i class="fa fa-user-astronaut prefix">
         </i>  Hire a Moontuber </h4>
         
       </a>
     </div>
-    <!-- Section 2 -->
-    <div class="section">
-        <!-- Content for Section 2 -->
-        <a href="#"></a><h5>Featured Videos</h5></a>
-        <!-- Add links or other content for this section -->
-    </div>
-    <!-- Section 3 -->
-    <div class="section">
-        <!-- Content for Section 3 -->
-        <a href="#"><h5>Trending Videos</h5></a>
-        <!-- Add links or other content for this section -->
-    </div>
+
     
 
     <!-- Search Bar -->
@@ -56,23 +45,24 @@
 
   <div class="col s12 m8 l10 xl10 right">
 
+
     <h3 class="center-align">Hi! I'm {{ user.username }}</h3>
-    
+
     <div class="card card-style2">
-    <div class="center-align">
-        
-    <h5>About Me</h5>
-    <p>{{ user.about_me }}</p>
-    </div>
-
-    <h5>Get in touch: </h5> <p>{{ user.email }}</p>
+        <div class="center-align">
+            <!-- Display selected spirit animal icon here -->
+            <i class="fa-solid {{ user.selected_animal }} fa-3x white-text"></i>
     
-
+            <h5>About Me</h5>
+            <p>{{ user.about_me }}</p>
+        </div>
+    
+        <h5>Get in touch:</h5>
+        <p>{{ user.email }}</p>
     </div>
-
+    
     <div>
-
-    <h3 class="center-align">Videos</h3>
+        <h3 class="center-align">Videos</h3>
 
         {% for video in user_uploaded_videos %}
         <div class="col s12 m6 l4 xl3">

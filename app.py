@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from bson import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -139,20 +140,24 @@ def add_video():
     return render_template("add_video.html", categories=categories)
 
 
-# Edit a video
 @app.route("/edit_video/<video_id>", methods=["GET", "POST"])
 def edit_video(video_id):
     if request.method == "POST":
-        hire_me = "hire" if request.form.get("hire_me") else "off"
-        submit = {
-            "category_name": request.form.get("category_name"),
-            "video_title": request.form.get("video_title"),
-            "video_description": request.form.get("video_description"),
+        category_name = request.form.get("category_name")
+        video_title = request.form.get("video_title")
+        video_description = request.form.get("video_description")
+        hire_me = request.form.get("hire_me") if request.form.get("hire_me") else "off"
+        video_link = request.form.get("video_link")
+
+        video_data = {
+            "category_name": category_name,
+            "video_title": video_title,
+            "video_description": video_description,
             "hire_me": hire_me,
-            "video_link": request.form.get("video_link"),
-            "created_by": session["user"]
+            "video_link": video_link
         }
-        mongo.db.videos.update_one({"_id": ObjectId(video_id)}, {"$set": submit})
+
+        mongo.db.videos.update_one({"_id": ObjectId(video_id)}, {"$set": video_data})
         flash("Video Successfully Updated")
         return redirect(url_for("get_categories"))
 
@@ -223,19 +228,17 @@ def edit_profile():
         if request.method == "POST":
             new_username = request.form.get("username")
             new_email = request.form.get("email")
-            about_me = request.form.get("about_me")  # Added about_me field
+            about_me = request.form.get("about_me")
+            selected_animal = request.form.get("selected_animal")
 
             user_data = {
                 "username": new_username,
                 "email": new_email,
-                "about_me": about_me  # Store "About Me" in the user document
+                "about_me": about_me,
+                "selected_animal": selected_animal
             }
 
-            mongo.db.users.update_one(
-                {"username": username},
-                {"$set": user_data}
-            )
-
+            mongo.db.users.update_one({"username": username}, {"$set": user_data})
             flash("Profile updated successfully!")
             return redirect(url_for("profile"))
 
@@ -244,20 +247,22 @@ def edit_profile():
         return redirect(url_for("login"))
 
 
+
+
+
 # Moontuber Profile
 @app.route('/moontuber_profile/<username>')
 def moontuber_profile(username):
-    # Fetch the user's data based on the username
     user = mongo.db.users.find_one({"username": username})
-    # Fetch all videos created by the user
     user_uploaded_videos = list(mongo.db.videos.find({"created_by": username}))
+    selected_animal = user.get("selected_animal")
 
-    return render_template('moontuber_profile.html', user=user, user_uploaded_videos=user_uploaded_videos)
+    return render_template('moontuber_profile.html', user=user, user_uploaded_videos=user_uploaded_videos, selected_animal=selected_animal)
 
 
+# Moontuber Directory
 @app.route("/moontuber_dir")
 def moontuber_directory():
-    # Use an aggregation pipeline to join users and videos
     pipeline = [
         {
             "$lookup": {
@@ -315,7 +320,7 @@ def video_detail(video_id):
         flash("Video not found")
         return redirect(url_for("get_videos"))
 
-
+# Comments Section
 @app.route("/submit_comment/<video_id>", methods=["POST"])
 def submit_comment(video_id):
     if "user" in session:
