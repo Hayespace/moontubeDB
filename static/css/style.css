@@ -150,6 +150,21 @@ nav {
   color: whitesmoke;
 }
 
+.featured-videos-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%; /* Adjust the max width as needed */
+}
+
+.featured-videos-row {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 20px; /* Adjust the gap as needed */
+}
+
+
+
+
 @media only screen and (max-width: 720px) {
   #fixed-nav-panel {
     display: none;
@@ -172,7 +187,6 @@ nav {
     background-color:rgba(37, 29, 186, 0.096);
     padding: 0%;
 }
-
 
 .btn-mob {
   display: none;

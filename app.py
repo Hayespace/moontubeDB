@@ -31,10 +31,9 @@ def get_videos():
         videos = list(mongo.db.videos.find({"category_name": category_name}))
         categorized_videos[category_name] = videos
 
-    return render_template("videos.html", categorized_videos=categorized_videos, show_buttons=False)
+    # Retrieve "featured" videos
+    featured_videos = list(mongo.db.videos.find({"category_name": "Featured"}))
 
-     # Retrieve "featured" videos
-    featured_videos = list(mongo.db.videos.find({"category_name": "featured"}))
     return render_template("videos.html", categorized_videos=categorized_videos, featured_videos=featured_videos, show_buttons=False)
 
 
@@ -245,9 +244,6 @@ def edit_profile():
         return render_template("edit_profile.html", current_user=user)
     else:
         return redirect(url_for("login"))
-
-
-
 
 
 # Moontuber Profile

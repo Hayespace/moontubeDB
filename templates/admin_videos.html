@@ -10,6 +10,7 @@
             <th>Video Description</th>
             <th>Video Link</th> 
             <th>User</th>
+            <th>Category</th>
             <th>Actions</th>
             <a href="{{ url_for('get_categories')}}" class="btn-large red">
                 Back <i class="fas fa-backward right"></i>
@@ -27,6 +28,7 @@
             </a>
             </td>
             <td>{{ video.created_by }}</td>
+            <td>{{ video.category_name }}</td>
             <td>
                 <a href="{{ url_for('edit_video', video_id=video._id) }}" class="btn green lighten-2">Edit</a>
                 <a href="{{ url_for('delete_video', video_id=video._id) }}" class="btn red">Delete</a>
