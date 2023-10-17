@@ -3,7 +3,6 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
     $('select').formSelect();
     $(".dropdown-trigger").dropdown();
-    $('.carousel').carousel();
     
 
     validateMaterializeSelect();

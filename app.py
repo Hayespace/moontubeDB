@@ -158,11 +158,17 @@ def edit_video(video_id):
 
         mongo.db.videos.update_one({"_id": ObjectId(video_id)}, {"$set": video_data})
         flash("Video Successfully Updated")
-        return redirect(url_for("get_categories"))
+
+        # Check if the username is admin and redirect accordingly
+        if "user" in session and session["user"] == "admin":
+            return redirect(url_for("admin_videos"))
+        else:
+            return redirect(url_for("get_categories"))
 
     video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_video.html", video=video, categories=categories)
+
 
 
 # Delete a video

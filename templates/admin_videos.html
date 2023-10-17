@@ -7,7 +7,6 @@
     <thead>
         <tr>
             <th>Video Title</th>
-            <th>Video Description</th>
             <th>Video Link</th> 
             <th>User</th>
             <th>Category</th>
@@ -21,7 +20,6 @@
         {% for video in videos %}
         <tr>
             <td>{{ video.video_title }}</td>
-            <td>{{ video.video_description }}</td>
             <td>
             <a href="{{ video.video_link }}" target="_blank" rel="noopener noreferrer">
                 {{ video.video_link }}
