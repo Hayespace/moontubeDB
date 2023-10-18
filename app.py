@@ -345,6 +345,13 @@ def submit_comment(video_id):
     return redirect(url_for("video_detail", video_id=video_id))
 
 
+# Test
+def test_get_videos_route():
+    response = app.test_client().get('/')
+    print("Test Result:", response.status_code)
+    assert response.status_code == 200
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

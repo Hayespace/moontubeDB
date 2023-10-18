@@ -88,13 +88,30 @@ function getYouTubeVideoId(url) {
     return match && match[1];
 }
 
-// Attach an input event listener to the video link input
-const videoLinkInput = document.getElementById('video_link_input');
-videoLinkInput.addEventListener('input', updateVideoPreview);
+   // Function to display a video preview
+   function displayVideoPreview() {
+    var videoLink = $("#video_link_input").val();
+    
+    // Check if the input contains a valid YouTube URL
+    if (videoLink.includes("youtube.com")) {
+        // Extract the video ID from the URL
+        var videoID = videoLink.split("v=")[1];
+        
+        // Embed the video using an iframe
+        var embedCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe>';
+        
+        // Display the video preview
+        $("#video-preview").html(embedCode);
+    } else {
+        // Invalid or unsupported URL
+        $("#video-preview").html("Invalid or unsupported video URL");
+    }
+}
 
-// Initial update of video preview
-updateVideoPreview();
-
+// Bind the function to the input field's change event
+$("#video_link_input").on("input", function() {
+    displayVideoPreview();
+});
 
 
 
