@@ -128,7 +128,13 @@ nav {
   font-size: small;
   text-align: left;
   background-color:rgba(37, 29, 186, 0.096);
-  padding: 0%;
+  padding: 10px;
+}
+
+.description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 #category_radio_buttons {
