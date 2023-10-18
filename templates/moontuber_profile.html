@@ -2,6 +2,7 @@
 {% block landing %}
 <div class="row">
   <div class="col m4 l2" id="fixed-nav-panel">
+
     <!-- Logo Section -->
     <div class="logo-section center-align logo">
         <a href="{{ url_for('get_videos') }}">
@@ -9,16 +10,21 @@
         <h3 class="title-logo"><b>MOONTUBE</b></h3>
       </a>
     </div>
+    
     <!-- Section 1 -->
     <div class="section center-align">
        <a href="{{ url_for('moontuber_directory') }}">
         <h4><i class="fa fa-user-astronaut prefix">
         </i>  Hire a Moontuber </h4>
-        
       </a>
     </div>
 
-    
+     <!-- Section 2 -->
+     <div class="section center-align">
+        <p>Welcome to MOONTUBE, your ultimate platform for connecting investors, crypto developers, and YouTubers all in one place. 
+          MOONTUBE streamlines the crypto community by providing a secure space to find influencers, create marketing opportunities, and promote projects. 
+          MOONTUBE simplifies the crypto experience with just a click.</p>
+      </div>
 
     <!-- Search Bar -->
     <div class="section search-bar">

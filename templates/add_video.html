@@ -4,7 +4,8 @@
     <h3 class="center-align">Add Video</h3>
 
     <div class="row card-style2">
-        <form class="col s12" method="POST" action="{{ url_for('add_video') }}">
+    <form class="col s12" method="POST" action="{{ url_for('add_video') }}">
+
     <!--Choose Category-->
     <div class="row" id="category_radio_buttons">
         {% for category in categories %}
@@ -14,8 +15,6 @@
           </label>
         {% endfor %}
       </div>
-
-      
     <!--Video Title-->        
             <div class="row">
                 <div class="input-field col s12 text-color">
