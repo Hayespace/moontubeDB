@@ -7,40 +7,18 @@
 Welcome to MOONTUBE, your ultimate platform for connecting investors, crypto developers, and YouTubers all in one place. MOONTUBE streamlines the crypto community by providing a secure space to find influencers, create marketing opportunities, and promote projects. MOONTUBE simplifies the crypto experience with just a click.
 
 ## Table of Contents
-1. [User Experience (UX)](#user-experience-ux)
-2. [User Stories](#user-stories)
-3. [Design and Color Scheme](#design-and-color-scheme)
-4. [Features](#features)
-5. [Video Playback](#video-playback)
-6. [User Accounts](#user-accounts)
-7. [Upload Videos](#upload-videos)
-8. [Wireframe](#wireframe)
-9. [Technologies Used](#technologies-used)
-10. [Testing](#testing)
-    - [User Stories](#user-stories)
-    - [Validator Testing](#validator-testing)
-        - HTML
-        - CSS
-        - JavaScript
-    - [Automated vs Manual Testing](#automated-vs-manual-testing)
-        - Automated Test
-        - Manual Testing
-    - [Unfixed Bugs](#unfixed-bugs)
-11. [Deployment](#deployment)
-12. [Credits](#credits)
-    - [Content](#content)
-    - [Media](#media)
-13. [Additional Features](#additional-features)
-    - [User-Centered Design](#user-centered-design)
-    - [Performance Optimization](#performance-optimization)
-    - [Security Measures](#security-measures)
-    - [Scalability and Future Development](#scalability-and-future-development)
-14. [Code Quality](#code-quality)
-15. [Testing (Advanced)](#testing-advanced)
+1. [User Stories](#user-stories)
+2. [Design and Color Scheme](#design-and-color-scheme)
+3. [Features](#features)
+4. [Wireframe](#wireframe)
+5. [Technologies Used](#technologies-used)
+6. [Testing](#testing)
+7. [Data Schema](#data-schema)
+8. [Unfixed Bugs](#unfixed-bugs)
+9. [Deployment](#deployment)
+10. [Credits](#credits)
 
-## User Experience (UX)
-
-### User Stories
+## User Stories
 
 In the world of cryptocurrency, the term "moon" is a popular slang term used by enthusiasts and traders. It refers to a significant and often rapid increase in the price of a cryptocurrency, resulting in substantial profits for those who hold the asset. When a cryptocurrency is said to be "mooning," it means that its value is soaring to new heights, reaching a point where the investors who believed in it early on are reaping substantial financial rewards. The use of "moon" in cryptocurrency is closely tied to the idea of reaching the moon, a metaphor for achieving great financial success through investments.
 
@@ -103,6 +81,34 @@ Administrators on MOONTUBE have extensive capabilities, including all the featur
 
 MOONTUBE offers a comprehensive set of features that empower both regular users and administrators to make the most of the platform, whether it's for content creation, community engagement, or platform management.
 
+### Scalability and Future Development
+MOONTUBE's design and architecture offer a solid foundation for scalability, allowing the platform to realize its full potential by seamlessly incorporating advanced features. The modular and well-structured codebase facilitates the integration of the following enhancements:
+
+1. **Wallet Connect**
+
+- Extending the user management system to accommodate wallet addresses or identifiers will enable secure wallet connections.
+- User profiles and settings can be updated to include wallet-related information, facilitating cryptocurrency transactions.
+
+2. **Payment Options**
+
+- Integration of multiple payment options can be achieved with ease. User accounts can be enhanced to store various payment information, enabling payments for premium content, subscriptions, and donations. Integration with external payment gateways can be seamlessly implemented.
+
+3. **P2P Chat**
+
+- Building a peer-to-peer (P2P) chat system can leverage the existing user account and profile framework. Real-time messaging features can be added, either through web sockets or by integrating a third-party messaging service. Notifications can be effortlessly integrated with the existing notification system.
+
+4. **Advertising Space**
+
+- Implementing an advertising system can be done without disrupting the user experience. Ad placements and content can be managed dynamically and delivered based on user profiles and preferences. User-specific ad targeting can be seamlessly incorporated.
+
+5. **Like/Dislike Functionality**
+
+- Adding like and dislike functionality is an extension of the current video system. Users can interact with videos by liking or disliking them, with these interactions stored and displayed on video pages.
+
+6. **Follow and Favorites**
+- Follow and favorites features can be integrated into user profiles, allowing users to follow other users and add videos to their favorites. These features are extensions of the existing user and video systems.
+
+These enhancements can be seamlessly implemented due to the platform's modular design and well-structured codebase. MOONTUBE's existing database schema and user management system can readily accommodate additional data fields and functionalities required for these new features. The use of Flask as the web application framework allows for flexibility in developing and integrating new features seamlessly. Furthermore, the codebase's adherence to coding standards and clear documentation makes it easier for new developers to understand and contribute to the platform's growth.
 
 ## Wireframe
 ![MOONTUBE Wireframes](link-to-your-wireframe-image)
@@ -129,7 +135,7 @@ MOONTUBE combines a mix of front-end and back-end technologies to deliver a user
 
 ## Testing
 
-### User Stories
+### User Stories Testing
 Here's how MOONTUBE fulfills the expectations of its users:
 
 - **Navigating through MOONTUBE is intuitive, thanks to its user-friendly layout and easily accessible content.** The platform has been meticulously designed with user experience in mind, ensuring that users can effortlessly find their way around and access the content they seek.
@@ -232,6 +238,51 @@ By combining automated testing for robust functional testing and manual testing 
 
 These manual tests helped ensure that the website functions as expected, provides a positive user experience, and maintains security and stability.
 
+# Data Schema
+
+### MongoDB Collections
+
+1. **Categories**
+
+- `_id`: Unique identifier for the category.
+- `category_name`: Name of the category.
+
+2. **Comments**
+
+- `_id`: Unique identifier for the comment.
+- `user`: User who posted the comment.
+- `text`: Text of the comment.
+- `video_id`: Identifier of the video to which the comment is associated.
+
+3. **Users**
+
+- `_id`: Unique identifier for the user.
+- `username`: Username of the user.
+- `password`: Hashed password of the user.
+- `email`: Email address of the user.
+- `about_me`: User's profile description.
+
+4. **Videos**
+
+- `category_name`: Name of the category to which the video belongs.
+- `video_title`: Title of the video.
+- `video_description`: Description of the video.
+- `video_link`: Link to the video.
+- `created_by`: Username of the user who created the video.
+
+### Collection Relationships
+
+- Users are associated with videos they create.
+- Comments are associated with videos through the `video_id`.
+- Categories are associated with videos through the `category_name`.
+
+### Database Configuration
+
+The MongoDB database used for Moontube is named "Moontube_Database." The data is organized into the specified collections, each serving a specific purpose within the platform. The schema has been designed to efficiently store and manage information related to categories, comments, users, and videos, ensuring seamless interaction and content creation within the Moontube ecosystem.
+
+To maintain the MongoDB database configuration in one location, a configuration file (e.g., `config.py`) includes the connection settings, such as the database name, host, and port. This centralized approach simplifies future configuration changes, ensuring that your database setup remains consistent across your application.
+
+
 ### Unfixed Bugs
 
 1. **Admin Portal Redirection Issue**:
@@ -269,7 +320,11 @@ MOONTUBE is deployed on [Your Hosting Platform]. Access the live site at [Moontu
 - [Source of Media 1]: Description of media and attribution.
 - [Source of Media 2]: Description of media and attribution.
 
-### Additional Features
+
+
+# Additional Features
+
+
 
 #### User-Centered Design
 **M(i)**: MOONTUBE's front-end design follows UX design principles and accessibility guidelines. It ensures ease of navigation and intuitive access to information and resources.
