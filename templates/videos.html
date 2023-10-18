@@ -51,7 +51,7 @@
   <div class="row featured-videos-row">
     {% for video in featured_videos %}
       <div class="col s12 m4 l2 xl2">
-        <div class="card card-style">
+        <div class="card card-style-featured">
           <a href="{{ url_for('video_detail', video_id=video._id) }}">
             <h2>
               <span class="card-title">{{ video.video_title }}</span>
