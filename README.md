@@ -6,6 +6,12 @@
 
 Welcome to MOONTUBE, the platform for connecting investors, crypto developers, and YouTubers all in one place. MOONTUBE streamlines the crypto community by providing a secure space to find influencers, create marketing opportunities, and promote projects. MOONTUBE simplifies the crypto experience with just a click.
 
+To access the admin specific features please use the following details:
+
+**Username:** admin
+
+**Password:** 123456
+
 ## Table of Contents
 1. [User Stories](#user-stories)
 2. [Design and Color Scheme](#design-and-color-scheme)
@@ -13,27 +19,10 @@ Welcome to MOONTUBE, the platform for connecting investors, crypto developers, a
 4. [Wireframe](#wireframe)
 5. [Technologies Used](#technologies-used)
 6. [Testing](#testing)
-7. [Data Schema](#data-schema)
+7. [Database](#data-schema)
 8. [Unfixed Bugs](#unfixed-bugs)
 9. [Deployment](#deployment)
 10. [Credits](#credits)
-
-
-## Moontube vs Task Manager
-
-Moontube is a crypto streaming platform that has leveraged the technology and architecture of the Code Institute Flask Task Manager project, introducing significant modifications to create a streaming platform. The project's foundation builds upon the Flask Task Manager's architecture, emphasising the adaptability and reusability of technology across diverse use cases.
-
-### User Profiles and Streaming
-
-Moontube's core functionality revolves around user profiles. Utilizing a system derived from the Flask Task Manager, these profiles are tailored to facilitate content creation, video streaming, and community interaction. This transformation showcases Moontube's entirely different needs providing an engaging crypto streaming platform for users.
-
-### Database Management and MongoDB
-
-Similar to the Flask Task Manager, Moontube maintains the CRUD (Create, Read, Update, Delete) database practices at its core. While the Task Manager managed tasks, Moontube utilizes these practices to handle video content, comments, and user interactions. MongoDB continues to play a vital role in Moontube. 
-
-### Deployment on Heroku
-
-In line with the Flask Task Manager's deployment approach, Moontube is hosted on Heroku, ensuring scalability and accessibility for a broad user base. Heroku's reliability for web applications supports Moontube in reaching a wide audience.
 
 ## Moontube User Stories
 
@@ -45,17 +34,15 @@ The relevance of the name MOONTUBE for a streaming platform in the crypto space 
 
 - **Community Engagement:** Cryptocurrency communities often use the concept of "moon" to create excitement and engagement. MOONTUBE, as a streaming platform, can tap into this enthusiasm by providing a space for enthusiasts to share their experiences, insights, and knowledge, further fueling the ambition to reach the moon.
 
-- **Crypto Lifestyle:** MOONTUBE's name suggests that it's not just about the financial aspects of cryptocurrency but also about the lifestyle and culture that surrounds it. Many crypto enthusiasts are passionate about the technology and its potential to change the world, and MOONTUBE can serve as a hub for discussions, collaborations, and content creation in this regard.
-
-In summary, "moon" in the context of cryptocurrency symbolizes the dream of financial success and prosperity. MOONTUBE's name captures this spirit and invites users to be part of a community and platform that embraces the excitement and ambition of the crypto space.
+"Moon" in the context of cryptocurrency symbolizes the dream of financial success and prosperity. MOONTUBE's name captures this spirit and invites users to be part of a community and platform that embraces the excitement and ambition of the crypto space.
 
 MOONTUBE users will:
 
-- **Easily Connect with Influencers:** MOONTUBE simplifies the process of connecting with influencers and exploring marketing opportunities for token developers, aligning with the optimistic and profit-driven sentiment associated with "moon" in crypto.
+**Easily Connect with Influencers:** MOONTUBE simplifies the process of connecting with influencers and exploring marketing opportunities for token developers, aligning with the optimistic and profit-driven sentiment associated with "moon" in crypto. Users can hire Moontubers for their expertise in promoting cryptocurrency projects and products.
 
-- **Build a Strong Community:** MOONTUBE serves as a hub for like-minded individuals, fostering connections and discussions within a single platform. It's not just about financial gains but also about the crypto lifestyle, technology, and culture that surrounds it.
+**Build a Strong Community:** MOONTUBE serves as a hub for like-minded individuals, fostering connections and discussions within a single platform. It's not just about financial gains but also about the crypto lifestyle, technology, and culture that surrounds it. Users can engage in discussions and collaborate on cryptocurrency-related projects, bringing the community closer to achieving their financial goals.
 
-- **For YouTubers, Developers, and Investors:** Whether you're a YouTuber seeking collaboration, a developer looking for secure promotion opportunities, or an investor aiming to ride the wave of a "moon" project, MOONTUBE invites you to dream big and explore the limitless potential of the crypto world.
+**For YouTubers, Developers, and Investors:** Whether you're a YouTuber seeking collaboration, a developer looking for secure promotion opportunities, or an investor aiming to ride the wave of a "moon" project, MOONTUBE enables users to explore the limitless potential of the crypto world. Content creators can add and edit videos, interact with their audience through comments, and indicate their availability for hire. Token developers and investors can easily find experts and influencers who can help them reach new heights in the crypto market.
 
 
 ## Design and Color Scheme
@@ -65,20 +52,17 @@ The MOONTUBE visual aesthetic is a reflection of the universe of cryptocurrencie
 ![logo](/static/assets/logo2.png)
 
 ### Space-Inspired
-Cryptocurrency, like the vastness of space, is full of possibilities. I have harnessed this inspiration to create a design that evokes the mystery and excitement of the crypto world. From the logo to the spacey hues that enhance the overall experience, you'll feel like you're embarking on a cosmic journey each time you log in.
+Cryptocurrency, like the vastness of space, is full of possibilities. I have harnessed this inspiration to create a design that evokes the mystery and excitement of the crypto world. From the logo to the spacey hues that enhance the overall experience.
 
 ### Sleek and Dark
-The scheme is designed to be sleek, like the black canvas of outer space. The dark background provides a comfortable and immersive viewing experience, reducing eye strain during extended visits to the platform.
+The scheme is designed to be sleek, like the black canvas of outer space. The dark background provides a comfortable and immersive viewing experience.
 
 ![Featured](/static/assets/featured_carousel.png)
 
 ### Solar Flares and Lens Flares
-Incorporating elements inspired by solar flares and lens flares adds dynamic energy to the design. These splashes of vivid colors represent the vibrant and ever-changing nature of the crypto market.
+Incorporating elements inspired by solar flares and lens flares adds dynamic energy to the design.
 
 ![background](/static/assets/flare2.png)
-
-### 2001: A Space Odyssey Aesthetics
-As a homage to the iconic film "2001: A Space Odyssey," I have included design elements that pay tribute to its visual style. The futuristic and minimalist look of the film has inspired the theme, adding a touch of sophistication to MOONTUBE.
 
 The design and color scheme aim to make your journey through the crypto universe not only informative but also visually captivating. MOONTUBE is more than just a platform; it's an experience that immerses you in the cosmic realm of cryptocurrency.
 
@@ -126,6 +110,47 @@ MOONTUBE offers a comprehensive set of features that empower both regular users 
 - **For Hire Toggle:** MOONTUBE provides a 'For Hire' toggle switch to indicate your availability for work.
 - **Red 'HIRE' Button:** Once selected, a red 'HIRE' button appears on the video card.
 - **Profile Page Link:** If a user clicks the 'HIRE' button, they will be directed to the MOONTUBER's profile page for potential collaboration.
+
+Once a video has been added the information is then commited to the database. The main landing page can then pull the information from the database and display the video in the correct categories;
+
+    <h3>New Videos</h3>
+    {% for category, videos in categorized_videos.items() %}
+    {% if category != "Featured" %}
+        <h4>
+        <u>{{ category }}</u>
+        </h4>
+        <div class="row">
+        {% for video in videos %}
+            <div class="col s12 m6 l4 xl3">
+            <div class="card card-style">
+                <a href="{{ url_for('video_detail', video_id=video._id) }}">
+                <h2>
+                    <span class="card-title">{{ video.video_title }}</span>
+                </h2>
+                <div class="video-container">
+                    <iframe src="{{ video.video_link }}?rel=0&modestbranding=1&controls=1&showinfo=0" title="video player" allowfullscreen></iframe>
+                </div>
+                <p>
+                    <em>"{{ video.video_description }}"</em>
+                </p>
+                <p>
+                    {% if video.hire_me == "hire" %}
+                    <a href="{{ url_for('moontuber_profile', username=video.created_by) }}" class="btn-floating waves-effect waves-light red right">
+                    <i class="material-icons tooltipped" data-position="bottom" data-tooltip="Hire Me!">{{ video.hire_me }}</i>
+                    </a>
+                    {% endif %}
+                </p>
+                <a href="{{ url_for('moontuber_profile', username=video.created_by) }}">
+                    <p class="red-text">{{ video.created_by }}</p>
+                </a>
+                </a>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% endfor %}
+
 ### Add Video
 ![Add Video](/static/assets/addvid.png)
 ### Edit Video
@@ -297,7 +322,10 @@ MOONTUBE's design and architecture offer a solid foundation for scalability, all
 These enhancements can be seamlessly implemented due to the platform's templated design and structured codebase. MOONTUBE's existing database schema and user management system can readily accommodate additional data fields and functionalities required for these new features. 
 
 ## Wireframe
-![MOONTUBE Wireframes](link-to-your-wireframe-image)
+Original Concept designed on https://lucid.app/lucidchart/715afd59-92e4-46b0-8a30-d91f3ab52811/edit?view_items=-Lors2m-M-WZ&invitationId=inv_d731e78f-3b66-4940-b1f8-5e72a4a73789
+
+![MOONTUBE Wireframes](/static/assets/landing_wf.png)
+![MOONTUBE Wireframes](/static/assets/profile_wf.png)
 
 ## Technologies Used
 MOONTUBE leverages a range of technologies to ensure a seamless user experience:
@@ -493,17 +521,46 @@ To maintain the MongoDB database configuration in one location, a configuration 
 
 
 ## Deployment
-MOONTUBE is deployed on [Your Hosting Platform]. Access the live site at [Moontube Website Link](https://moontube-db-1e90f4bf79ae.herokuapp.com/).
+
+MOONTUBE is successfully deployed on Heroku, You can access the live site at [Moontube Website Link](https://moontube-db-1e90f4bf79ae.herokuapp.com/).
 
 ## Credits
 
+### Moontube vs Task Manager
+
+Moontube has leveraged the technology and architecture of the Code Institute Flask Task Manager project, introducing significant modifications to create a streaming platform. The project's foundation builds upon the Flask Task Manager's architecture, emphasising the adaptability and reusability of technology across diverse use cases.
+
+**User Profiles and Streaming**
+
+Moontube's core functionality revolves around user profiles. Utilizing a system derived from the Flask Task Manager, these profiles are tailored to facilitate content creation, video streaming, and community interaction. This transformation showcases Moontube's entirely different needs providing an engaging crypto streaming platform for users.
+
+**Database Management and MongoDB**
+
+Similar to the Flask Task Manager, Moontube maintains the CRUD (Create, Read, Update, Delete) database practices at its core. While the Task Manager managed tasks, Moontube utilizes these practices to handle video content, comments, and user interactions. MongoDB continues to play a vital role in Moontube. 
+
+**Deployment on Heroku**
+
+In line with the Flask Task Manager's deployment approach, Moontube is hosted on Heroku, ensuring scalability and accessibility for a broad user base. Heroku's reliability for web applications supports Moontube in reaching a wide audience.
+
+
 ### Content
-- [Source of Content 1]: Description of content and attribution.
-- [Source of Content 2]: Description of content and attribution.
+Javascript to embed Youtube URL was taken from these videos.
+- https://www.youtube.com/watch?v=3OlTKaGVMIA
+- https://www.youtube.com/watch?v=aPUVUrS2oC0
+
+Inspiration for layout from this tutorial
+- https://www.youtube.com/watch?v=4ykAepVkG5Y&t=2s
+
+- Flask and Jinja Templating ideas from here
+https://www.youtube.com/watch?v=4yaG-jFfePc
+
+- Redirects, Returns and User restriction 
+https://stackoverflow.com/questions/67610712/how-do-i-restrict-an-users-access-with-flask-principal-and-flask-security
 
 ### Media
-- [Source of Media 1]: Description of media and attribution.
-- [Source of Media 2]: Description of media and attribution.
+- All Videos are from Youtube and the content is owned by the creators.  For Demo purposes, videos not created by the Moontube profile name/ User have been used.  This was to simulate a functional site with working content
+- The Logo was designed by Anthony Hayes
+- The Background Image is from Adobe Express
 
 
 
