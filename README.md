@@ -6,11 +6,6 @@
 
 Welcome to MOONTUBE, the platform for connecting investors, crypto developers, and YouTubers all in one place. MOONTUBE streamlines the crypto community by providing a secure space to find influencers, create marketing opportunities, and promote projects. MOONTUBE simplifies the crypto experience with just a click.
 
-To access the admin specific features please use the following details:
-
-**Username:** admin
-
-**Password:** 123456
 
 ## Table of Contents
 1. [User Stories](#user-stories)
