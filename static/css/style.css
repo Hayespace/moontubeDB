@@ -194,6 +194,6 @@ nav {
 
 @media(max-height: 950px) {
   .about {
-    font-size: small;
+    display: none;
   }
 }
