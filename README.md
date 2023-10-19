@@ -1,4 +1,4 @@
-# MOONTUBE - All-in-One Crypto Community Platform
+# Moontube: A Crypto Streaming Platform
 
 ![responsiveness](/static/assets/responsiveness.png)
 
@@ -18,7 +18,24 @@ Welcome to MOONTUBE, the platform for connecting investors, crypto developers, a
 9. [Deployment](#deployment)
 10. [Credits](#credits)
 
-## User Stories
+
+## Moontube vs Task Manager
+
+Moontube is a crypto streaming platform that has leveraged the technology and architecture of the Code Institute Flask Task Manager project, introducing significant modifications to create a streaming platform. The project's foundation builds upon the Flask Task Manager's architecture, emphasising the adaptability and reusability of technology across diverse use cases.
+
+### User Profiles and Streaming
+
+Moontube's core functionality revolves around user profiles. Utilizing a system derived from the Flask Task Manager, these profiles are tailored to facilitate content creation, video streaming, and community interaction. This transformation showcases Moontube's entirely different needs providing an engaging crypto streaming platform for users.
+
+### Database Management and MongoDB
+
+Similar to the Flask Task Manager, Moontube maintains the CRUD (Create, Read, Update, Delete) database practices at its core. While the Task Manager managed tasks, Moontube utilizes these practices to handle video content, comments, and user interactions. MongoDB continues to play a vital role in Moontube. 
+
+### Deployment on Heroku
+
+In line with the Flask Task Manager's deployment approach, Moontube is hosted on Heroku, ensuring scalability and accessibility for a broad user base. Heroku's reliability for web applications supports Moontube in reaching a wide audience.
+
+## Moontube User Stories
 
 In the world of cryptocurrency, the term "moon" is a popular slang term used by enthusiasts and traders. It refers to a significant and often rapid increase in the price of a cryptocurrency, resulting in substantial profits for those who hold the asset. When a cryptocurrency is said to be "mooning," it means that its value is soaring to new heights, reaching a point where the investors who believed in it early on are reaping substantial financial rewards. The use of "moon" in cryptocurrency is closely tied to the idea of reaching the moon, a metaphor for achieving great financial success through investments.
 
@@ -45,20 +62,46 @@ MOONTUBE users will:
 
 The MOONTUBE visual aesthetic is a reflection of the universe of cryptocurrencies. I have drawn inspiration from the moon and space, infusing the platform with a celestial vibe.
 
+![logo](/static/assets/logo2.png)
+
 ### Space-Inspired
 Cryptocurrency, like the vastness of space, is full of possibilities. I have harnessed this inspiration to create a design that evokes the mystery and excitement of the crypto world. From the logo to the spacey hues that enhance the overall experience, you'll feel like you're embarking on a cosmic journey each time you log in.
 
 ### Sleek and Dark
 The scheme is designed to be sleek, like the black canvas of outer space. The dark background provides a comfortable and immersive viewing experience, reducing eye strain during extended visits to the platform.
 
+![Featured](/static/assets/featured_carousel.png)
+
 ### Solar Flares and Lens Flares
 Incorporating elements inspired by solar flares and lens flares adds dynamic energy to the design. These splashes of vivid colors represent the vibrant and ever-changing nature of the crypto market.
+
+![background](/static/assets/flare2.png)
 
 ### 2001: A Space Odyssey Aesthetics
 As a homage to the iconic film "2001: A Space Odyssey," I have included design elements that pay tribute to its visual style. The futuristic and minimalist look of the film has inspired the theme, adding a touch of sophistication to MOONTUBE.
 
 The design and color scheme aim to make your journey through the crypto universe not only informative but also visually captivating. MOONTUBE is more than just a platform; it's an experience that immerses you in the cosmic realm of cryptocurrency.
 
+### Landing Page Design
+
+The Moontube landing page is carefully designed to create an immersive and user-friendly experience for visitors. Here's an overview of the key design elements:
+
+1. **Crypto-Themed Videos**
+The heart of Moontube's landing page is its collection of crypto-themed videos, prominently displayed in the central area. These videos are organized into various categories, making it easy for users to discover content that interests them. The categories can cover a wide range of crypto-related topics, from blockchain technology and cryptocurrency tutorials to market analysis and investment strategies.
+
+2. **Features Carousel**
+At the top of the landing page is an interactive features carousel. This section is designed to showcase the platform's most exciting features and highlight content curated by the admin user. The admin can easily update this carousel, ensuring that the most relevant and engaging content is always in the spotlight.
+
+3. **Sleek Logo and Branding**
+On the left-hand panel of the landing page, users are greeted by Moontube's sleek and visually appealing logo. The logo encapsulates the essence of crypto-space, reflecting the platform's unique aesthetic.
+
+4. **User Information and Search Bar**
+Beneath the logo is a minimalist panel that provides information about the site and a simple search bar.
+
+5. **Simple Top Navigation**
+Moontube's top navigation bar is designed to be clean and straightforward, focusing on user experience. It features only two words, "Home" and "Portal," making navigation intuitive. A dropdown menu in the top right corner provides access to additional features.
+
+![Landing](/static/assets/landing.png)
 
 ## Features
 
@@ -95,14 +138,120 @@ MOONTUBE offers a comprehensive set of features that empower both regular users 
 ![Add Video](/static/assets/video_close.png)
 
 ### Embed Videos
-  - MOONTUBE simplifies the video upload process, allowing users to customize video details such as titles and descriptions.
-  - Users can also update, edit, and delete their own videos and profiles, giving them full control over their content and online presence.
+MOONTUBE simplifies the video upload process and ensures that users can seamlessly share YouTube videos with the MOONTUBE community. The process for embedding videos involves converting the standard YouTube video URL into an embed format and displaying a video preview. Here's an overview of the process and the associated code that makes this feature work:
+
+Process:
+
+**User Input:** When users input a YouTube video URL into the designated field on MOONTUBE, the system checks if the URL is valid and supported for embedding.
+
+**Validation:** The URL is validated to ensure it contains "youtube.com".
+
+**Conversion to Embed Format:** If the URL is valid, the code extracts the unique video ID from the URL. It then converts the URL into an embed format that is compatible with displaying YouTube videos within the MOONTUBE platform.
+
+**Video Preview:** After converting the URL, the code constructs an embedded YouTube iframe for the video with the specified video ID. This iframe is embedded within the MOONTUBE page, creating a video preview for users.
+
+**Invalid URL Handling:** If the user enters an invalid or unsupported URL, MOONTUBE provides appropriate feedback, indicating that the URL is not suitable for embedding.
+
+        // Function to convert a YouTube URL to the embed format
+    function convertToEmbedUrl(url) {
+        var videoId = getVideoIdFromUrl(url);
+        if (videoId) {
+            return 'https://www.youtube.com/embed/' + videoId;
+        }
+        return url;
+    }
+
+    // Function to extract the video ID from a YouTube URL
+    function getVideoIdFromUrl(url) {
+        var match = url.match(/[?&]v=([^&]+)/);
+        return match ? match[1] : null;
+    }
+
 
 ### Admin Features
-  - Administrators on MOONTUBE possess extensive capabilities beyond those of regular users.
-  - Admins have access to all the features available to regular users and can perform additional actions, including creating, updating, and deleting other users' videos and profiles.
-  - This ensures the platform's quality and adherence to guidelines.
-  - Admins can also create new categories and curate the trending section, promoting content that deserves recognition within the MOONTUBE community.
+  Administrators on MOONTUBE possess extensive capabilities beyond those of regular users. They have access to all the features available to regular users and can perform additional actions, including creating, updating, and deleting other users' videos and profiles. Additionally, admins can create new categories and curate the trending section, promoting content that deserves recognition within the MOONTUBE community
+
+![Add Video](/static/assets/admonport.png)
+
+**Code Examples for Admin Features**
+1. **List Users (Admin Access Only)**
+![Add Video](/static/assets/user_mgmt.png)
+
+        # Admin Users
+        @app.route("/users")
+        def list_users():
+            if "user" in session:
+                if session["user"] == "admin":  # Check if the user is an admin
+                    users = list(mongo.db.users.find())
+                    return render_template("users.html", users=users)
+            return redirect(url_for("login"))
+
+    This code ensures that only users with the role "admin" can access the list of users. If the current user is not an admin, they are redirected to the login page.
+    
+
+2. **Delete User (Admin Access Only)**
+
+        # Delete a user
+        @app.route("/delete_user/<user_id>")
+        def delete_user(user_id):
+            if "user" in session and session["user"] == "admin":  # Check if the user is an admin
+                mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+                flash("User Successfully Deleted")
+                return redirect(url_for("list_users"))
+            return redirect(url_for("login"))
+
+    This code allows administrators to delete user accounts. Only users with the role "admin" can access this functionality.
+
+3. **List Admin Videos (Admin Access Only)**
+![Add Video](/static/assets/allvid_ad.png)
+
+        # Retrieve all videos from MongoDB
+        @app.route("/admin_videos")
+        def admin_videos():
+            if "user" in session and session["user"] == "admin":  # Check if the user is an admin
+                videos = list(mongo.db.videos.find())
+                return render_template("admin_videos.html", videos=videos)
+            return redirect(url_for("login"))
+
+    This route allows administrators to view all videos. Access is restricted to users with the role "admin."
+
+4. **Navigation Bar Formatting (Admin Portal)**
+
+![Add Video](/static/assets/dropdown_admin.png)
+
+In your HTML navigation bar, you can control the visibility of the "Admin Portal" link based on the user's role:
+
+
+        {% if session.user %}
+        <li><a href="{{ url_for('add_video') }}">Add Video</a></li>
+        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+        {% if session.user|lower == "admin"|lower %}
+            <li><a href="{{ url_for('get_categories') }}">Admin Portal</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Log In</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+
+The "Admin Portal" link is displayed only if the user's role, stored in the session, is "admin."
+
+These code examples demonstrate how MOONTUBE implements admin-specific features with conditional formatting to restrict access to authorized administrators, enhancing the platform's management and curation capabilities.
+
+### Hire Moontubers and Moontuber Profiles
+
+- **Hire Moontubers**: MOONTUBE enables users to hire Moontubers for various services or collaborations. This feature can be accessed from the video page by clicking the "Hire" button or from the navigation bar's "Hire a Moontuber" option. This will direct them to either moontubers profile or to a directory of moontuber profiles.
+
+- **Moontuber Directory**
+![Directory](/static/assets/direct.png)
+
+- **Moontuber Profiles**: Moontuber profiles contain information about the user. Users can view a Moontuber's bio, email address, and a list of videos created by that user. 
+![Profile](/static/assets/profilepage.png)
+
+### Comments
+- Users can actively engage with the content by leaving comments below the videos. This feature fosters interaction and feedback within the MOONTUBE community.
+![Comments](/static/assets/commentssection.png)
+
 
 ### Scalability and Future Development
 MOONTUBE's design and architecture offer a solid foundation for scalability, allowing the platform to realize its full potential by seamlessly incorporating advanced features. The modular and well-structured codebase facilitates the integration of the following enhancements:
@@ -131,33 +280,19 @@ MOONTUBE's design and architecture offer a solid foundation for scalability, all
 6. **Follow and Favorites**
 - Follow and favorites features can be integrated into user profiles, allowing users to follow other users and add videos to their favorites. These features are extensions of the existing user and video systems.
 
-7. **User Accouns**
+7. **User Accounts**
 
     MOONTUBE is constantly evolving to provide the best experience for its users. In the future, the 'User Account' feature will be enhanced to offer a wide range of capabilities, empowering registered users to maximize their experience on the platform. Here's a glimpse of what a 'User Account' will be able to do:
 
-- **Create Detailed Profiles:** Users will have the ability to create comprehensive profiles that showcase their personality and interests. These profiles can include personal information, profile pictures, and bios, making it easy for others to get to know them better.
-
-- **Seamlessly Add YouTube Video Links with Descriptions:** Users will be able to integrate their YouTube video content into MOONTUBE effortlessly by adding video links along with descriptions. This feature will enable users to share their videos with the MOONTUBE community, providing a platform for exposure and engagement.
-
-- **'For Hire' Toggle:** MOONTUBE will offer a 'For Hire' toggle switch, allowing users to indicate their availability for services. This feature will be particularly valuable for freelancers, content creators, and professionals looking to offer their skills or collaborate with others on the platform.
-
-- **Engage Through Comments:** Users will be able to actively engage with the MOONTUBE community by leaving comments on videos posted by other users. This will encourage discussions, feedback, and interactions, creating a vibrant and supportive environment.
-
 - **Interact Within the Community:** Registered users will have the ability to actively engage with other members of the MOONTUBE community. Interaction may include liking and sharing videos, following other users, and participating in discussions and groups related to various topics.
 
-- **Personalize Profiles:** Users can personalize their profiles, including theme customization, color schemes, and layout preferences. This level of customization will allow users to tailor their MOONTUBE experience to their unique tastes.
+- **Personalize Profiles:** Users can personalize their profiles, including profile pictures, theme customization, color schemes, and layout preferences. This level of customization will allow users to tailor their MOONTUBE experience to their unique tastes.
 
 - **Access a Personalized Dashboard:** Users will have access to a personalized dashboard providing an overview of their activities, including video views, likes, comments, and engagement metrics. This dashboard will help users track their content's performance and their impact on the platform.
 
 - **Real-Time Notifications:** Users will receive real-time notifications for activities related to their content, profile, and interactions. This feature will ensure that users stay informed about new comments, likes, and messages, enhancing their engagement with the platform.
 
-- **Robust Privacy Settings:** MOONTUBE will offer robust privacy settings, allowing users to control who can view their content, follow them, or send them messages. This will empower users to manage their online presence and protect their privacy effectively.
-
 - **Private Messaging:** Users will be able to send private messages to other users, fostering direct communication and collaboration opportunities. Messaging will enable discussions related to potential partnerships, content creation, and project collaboration.
-
-- **Community Support Network:** MOONTUBE will provide access to a community support network, where users can seek help, share ideas, and collaborate on projects. This feature will promote a sense of belonging and encourage users to actively participate in the MOONTUBE ecosystem.
-
-In summary, a 'User Account' on MOONTUBE will open up a world of opportunities for users to connect, engage, and share their content with the crypto community. Whether they are content creators, investors, or crypto enthusiasts, registered users will be able to make the most of their MOONTUBE experience by leveraging these features.
 
 These enhancements can be seamlessly implemented due to the platform's templated design and structured codebase. MOONTUBE's existing database schema and user management system can readily accommodate additional data fields and functionalities required for these new features. 
 
@@ -214,7 +349,6 @@ Testing MOONTUBE against these user stories ensures that the platform delivers o
 ![Python Validator](/static/assets/pythonval.png)
 
 - **JavaScript**: No Errors
-
 
 
 ### Automated vs Manual Testing
