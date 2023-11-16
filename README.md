@@ -470,6 +470,43 @@ These manual tests helped ensure that the website functions as expected, provide
 - `email`: Email address of the user.
 - `about_me`: User's profile description.
 
+      +-----------------+        +-------------------+       +---------------------+
+      |    Categories   |        |      Comments     |       |        Users        |
+      +-----------------+        +-------------------+       +---------------------+
+      | _id             |        | _id               |       | _id                 |
+      | category_name   |        | user              |       | username            |
+      |                 |        | text              |       | password            |
+      |                 |        | video_id          |       | email               |
+      |                 |        +-------------------|       | about_me            |
+      +-----------------+                            |       +---------------------+
+               |                                     |
+               |                                     |
+               |                                     |
+               |                                     |
+               |                                     |
+      +-----------------+                            |
+      |      Videos     |                            |
+      +-----------------+                            |
+      | category_name   |                            |
+      | video_title     |----------------------------|
+      | video_description|
+      | video_link      |
+      | created_by      |
+      +-----------------+
+               |
+               |
+               |
+               |
+               |
+      +-----------------+
+      | Users_Videos    |
+      +-----------------+
+      | _id             |
+      | username        |
+      | video_id        |
+      +-----------------+
+
+
 4. **Videos**
 
 - `category_name`: Name of the category to which the video belongs.
